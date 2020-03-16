@@ -10,3 +10,4 @@ BDD contiendra les tables :
  - goût [id integer pk auto, quantitéDispointeger(>=0), description varchar2(200), photovarchar2(200)]
  - diffuseur [id integer pk auto, quantitéDispointeger(>=0), description varchar2(200), photovarchar2(200)]
  - location [idNarg, idManche, idTuyau, idTete, idGout, idDiffuseur]
+Les photos et justificatif sont des chemin relatif.
