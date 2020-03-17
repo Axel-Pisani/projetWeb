@@ -1,7 +1,7 @@
 # projetWeb
 
 BDD contiendra les tables :
- - user [id integer pk auto, pseudo varchar2(50), motDePasse varchar2(50), addresseDeLivraison varchar2(250), justificatifDeMajorité]
+ - user [id integer pk auto, pseudo varchar2(50), motDePasse varchar2(50), addresseDeLivraison varchar2(250), justificatifDeMajorité, role]
  - narguile [id integer pk auto, marque varchar2(50), référence varchar2(50), quantitéDeDispo integer(>=0), 
  noteDeUtilisateur integer(0<= val <=5), photo varchar2(150), idManche, idTuyau, idTete, idGout, idDiffuseur]
  - manche [id integer pk auto, quantitéDispointeger(>=0), description varchar2(200), photovarchar2(200)]
