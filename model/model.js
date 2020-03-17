@@ -1,10 +1,22 @@
+let db = require('better-sqlite3');
+
+
+
+exports.create(id) {}//create
+exports.read(id) {}//read
+exports.update(id) {}//update
+exports.delete(id) {}//delete
+exports.search(data, table) {}//search
+
+
 /*
 CREATE TABLE users (
 	id INTEGER PRIMARY KEY AUTOINCREMENT, 
 	name VARCHAR2(100) NOT NULL, 
 	password VARCHAR2(100) NOT NULL, 
 	adresse VARCHAR2(250) NOT NULL, 
-	justificatif VARCHAR2(250) NOT NULL
+	justificatif VARCHAR2(250) NOT NULL, 
+	role VARCHAR2(10) NOT NULL
 );
 
 CREATE TABLE manche (
@@ -21,50 +33,67 @@ CREATE TABLE tuyau (
 	photo VARCHAR2(200)
 );
 
-CREATE TABLE tête (
+CREATE TABLE tete (
 	id INTEGER PRIMARY KEY AUTOINCREMENT, 
 	quantity INTEGER CHECK(quantity >= 0), 
 	description VARCHAR2(200), 
-	photo VARCHAR2(200)
-);
+	photo VARCHAR2(200));
 
 CREATE TABLE goût (
 	id INTEGER PRIMARY KEY AUTOINCREMENT, 
 	quantity INTEGER CHECK(quantity >= 0), 
 	description VARCHAR2(200), 
-	photo VARCHAR2(200)
-);
+	photo VARCHAR2(200));
 
 CREATE TABLE diffuseur (
 	id INTEGER PRIMARY KEY AUTOINCREMENT, 
 	quantity INTEGER CHECK(quantity >= 0), 
 	description VARCHAR2(200), 
-	photo VARCHAR2(200)
-);
-
+	photo VARCHAR2(200));
 
 CREATE TABLE narguile (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	marque VARCHAR2(50) NOT NULL,
-	reference VARCHAR2(100) NOT NULL,
-	quantity INTEGER DEFAULT 0, 
+	id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	quantity INTEGER CHECK(quantity >= 0) DEFAULT 0, 
+	marque VARCHAR2(50) NOT NULL, 
+	reference VARCHAR2(100) NOT NULL, 
 	noteUser INTEGER CHECK(noteUser >= 0 AND noteUser <= 5), 
-	photo VARCHAR2(150) NOT NULL,
-	idManche INTEGER NOT NULL REFERENCES manche, 
-	idTuyau INTEGER NOT NULL REFERENCES tuyau,
+	photo VARCHAR2(150) NOT NULL, 
+	idManche INTEGER NOT NULL REFERENCES manche,  
+	idTuyau INTEGER NOT NULL REFERENCES tuyau, 
 	idTete INTEGER NOT NULL REFERENCES tete, 
-	idGout INTEGER NOT NULL REFERENCES gout, 
-	idDiffuseur INTEGER NOT NULL REFERENCES diffuseur
-);
+	idGout INTEGER NOT NULL REFERENCES gout,  
+	idDiffuseur INTEGER NOT NULL REFERENCES diffuseur);
     
 CREATE TABLE location (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    idNarg INTEGER NOT NULL REFERENCES narguile, 
-    idManche INTEGER NOT NULL REFERENCES manche, 
-    idTuyau INTEGER NOT NULL REFERENCES tuyau, 
-    idTete INTEGER NOT NULL REFERENCES tete, 
-    idGout INTEGER DEFAULT NULL REFERENCES gout, 
-    idDiffuseur INTEGER NOT NULL REFERENCES diffuseur
-
+	id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	idNarg INTEGER NOT NULL REFERENCES narguile, 
+	idManche INTEGER NOT NULL REFERENCES manche, 
+	idTuyau INTEGER NOT NULL REFERENCES tuyau, 
+	idTete INTEGER NOT NULL REFERENCES tete, 
+	idGout INTEGER DEFAULT NULL REFERENCES gout, 
+	idDiffuseur INTEGER NOT NULL REFERENCES diffuseur, 
+	startLoc TIMESTAMP NOT NULL, 
+	timingLoc TIMESTAMP NOT NULL
 );
+
+
+
+
+CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR2(100) NOT NULL, password VARCHAR2(100) NOT NULL, adresse VARCHAR2(250) NOT NULL, justificatif VARCHAR2(250) NOT NULL, role VARCHAR2(10) NOT NULL);
+
+CREATE TABLE manche (id INTEGER PRIMARY KEY AUTOINCREMENT, quantity INTEGER CHECK(quantity >= 0), description VARCHAR2(200), photo VARCHAR2(200));
+
+CREATE TABLE tuyau (id INTEGER PRIMARY KEY AUTOINCREMENT, quantity INTEGER CHECK(quantity >= 0), description VARCHAR2(200), photo VARCHAR2(200));
+
+CREATE TABLE tete (id INTEGER PRIMARY KEY AUTOINCREMENT, quantity INTEGER CHECK(quantity >= 0), description VARCHAR2(200), photo VARCHAR2(200));
+
+CREATE TABLE goût (id INTEGER PRIMARY KEY AUTOINCREMENT, quantity INTEGER CHECK(quantity >= 0), description VARCHAR2(200), photo VARCHAR2(200));
+
+CREATE TABLE diffuseur (id INTEGER PRIMARY KEY AUTOINCREMENT, quantity INTEGER CHECK(quantity >= 0), description VARCHAR2(200), photo VARCHAR2(200));
+
+CREATE TABLE narguile (id INTEGER PRIMARY KEY AUTOINCREMENT, quantity INTEGER CHECK(quantity >= 0) DEFAULT 0, marque VARCHAR2(50) NOT NULL, reference VARCHAR2(100) NOT NULL, noteUser INTEGER CHECK(noteUser >= 0 AND noteUser <= 5),  photo VARCHAR2(150) NOT NULL, idManche INTEGER NOT NULL REFERENCES manche,  idTuyau INTEGER NOT NULL REFERENCES tuyau, idTete INTEGER NOT NULL REFERENCES tete,  idGout INTEGER NOT NULL REFERENCES gout,  idDiffuseur INTEGER NOT NULL REFERENCES diffuseur);
+    
+CREATE TABLE location (id INTEGER PRIMARY KEY AUTOINCREMENT, idNarg INTEGER NOT NULL REFERENCES narguile, idManche INTEGER NOT NULL REFERENCES manche, idTuyau INTEGER NOT NULL REFERENCES tuyau, idTete INTEGER NOT NULL REFERENCES tete, idGout INTEGER DEFAULT NULL REFERENCES gout, idDiffuseur INTEGER NOT NULL REFERENCES diffuseur, startLoc TIMESTAMP NOT NULL, timingLoc TIMESTAMP NOT NULL);
+
+
 */
