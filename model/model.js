@@ -17,6 +17,27 @@ exports.readUser = function (id) {
 // exports.delete(id) {}//delete
 // exports.search(data, table) {}//search
 
+
+exports.getNarguile = function () {
+	let narguile = db.prepare('SELECT * FROM narguile').all();
+	let res = [];
+	narguile.forEach((elmeNarg) => {
+		let tabIndex = [];
+		let query = 'SELECT * FROM manche WHERE id = ' + elmeNarg.idManche + ';';
+		let elem = {
+			
+		} 
+
+
+	})//forEach
+	// console.log(narguile[]);
+	// let manche = db.prepare('SELECT * FROM manche').get();
+	// let tuyau = db.prepare('SELECT * FROM tuyau').get();
+	// let tete = db.prepare('SELECT * FROM tete').get();
+	// let diffuseur = db.prepare('SELECT * FROM diffuseur').get();
+}//getNarguile
+
+
 exports.searchUser = function (tel, data) {
 	let query = db.prepare('SELECT * FROM users').all();
 	query.forEach((user) => {

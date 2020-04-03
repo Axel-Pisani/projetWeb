@@ -18,9 +18,10 @@ app.get('/', (req, res) => {
 });
 
 
-// app.get('/create', (req, res) => {
-// 	res.render('create');
-// });
+app.get('/listNarg', (req, res) => {
+	res.render('listNarg');
+	db.getNarguile();
+});
 
 app.get('/signup', (req, res) => {
 	res.render('registerForm');
@@ -45,6 +46,7 @@ app.post('/signup', (req, res) => {
 		res.redirect('/signup');
 	// res.redirect('/userView');
 	db.createUser(data);
+	req.locals = 
 	res.redirect('/');
 	return;
 });
