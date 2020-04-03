@@ -18,6 +18,7 @@ exports.readUser = function (id) {
 // exports.search(data, table) {}//search
 
 
+/*
 exports.getNarguile = function () {
 	let narguile = db.prepare('SELECT * FROM narguile').all();
 	let res = [];
@@ -36,7 +37,7 @@ exports.getNarguile = function () {
 	// let tete = db.prepare('SELECT * FROM tete').get();
 	// let diffuseur = db.prepare('SELECT * FROM diffuseur').get();
 }//getNarguile
-
+*/
 
 exports.searchUser = function (tel, data) {
 	let query = db.prepare('SELECT * FROM users').all();
