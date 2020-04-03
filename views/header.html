@@ -21,3 +21,10 @@
       
     </nav>
 
+      {{#login}}
+      <li><a href="/signout" class="btn btn-primary mr-2">Signout</a></li>
+      {{/login}}
+
+      {{^login}}    
+      <li><a href="/signin" class="btn btn-primary mr-2">Signin</a></li>
+      {{/login}}
