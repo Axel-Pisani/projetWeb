@@ -7,6 +7,8 @@ let mustache = require ('mustache-express');
 app.engine('html', mustache());
 app.set('view engine', 'html');
 app.set('views', '../views');
+app.use('/views',express.static(__dirname + '/views'));
+
 
 let bodyParser = require('body-parser');
 let db = require('../model/model');
