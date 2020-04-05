@@ -9,11 +9,34 @@ app.set('view engine', 'html');
 app.set('views', '../views');
 app.use('/views', express.static(__dirname + '../views'));
 
+let cookieSession = require('cookie-session');
 
 let bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+
 let db = require('../model/model');
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieSession({
+  secret: 'MotDePassePourMesCookiesSessions',
+}));
+
+
+app.use((req, res, next) => {
+	if(req.session.login !== undefined) {
+		res.locals.authenticated = true;
+		return next();
+	}
+	next();
+});
+
+// let isAuthenticated = function (req, res, next) {
+// 	if(req.session.login !== undefined) {
+// 		res.locals.authenticated = true;
+// 		return next();
+// 	}
+// 	next();
+// }//is_authenticated
+
 
 app.get('/', (req, res) => {
 	res.render('index');
@@ -22,36 +45,53 @@ app.get('/', (req, res) => {
 
 app.get('/listNarg', (req, res) => {
 	res.render('listNarg');
-	db.getNarguile();
 });
+
 
 app.get('/signup', (req, res) => {
 	res.render('registerForm');
 });
 
 
-// /*	  post    */
+app.get('/signout', (req, res) => {
+	req.session = null;
+	// req.sessionOptions.maxAge = new Date();
+	res.redirect('/');
+});
 
-// app.post('/create', (req, res) => {
-//     redirect('/');
+
+app.get('/signin', (req, res) => {
+	let user = db.
+	req.session.login = true;
+	res.redirect('/listNarg');
+});
+
+
+/*	  POST    */
+
+app.post('/create', (req, res) => {
+    redirect('/');
+});
+
+// app.post('/signup', (req, res) => {
+// 	let data = req.body;
+// 	let justify = data.justify.split('-');
+// 	let date = new Date();
+// 	if (justify[0] < 1960 || (date.getYear() - justify[0]) < 18) 
+// 		res.redirect('/signup');
+// 	let user = db.searchUser(data.tel, data.address);
+// 	if (user !== null)
+// 		//ajouter message erreur user existe deja
+// 		res.redirect('/signup');
+// 	// res.redirect('/userView');
+// 	db.createUser(data);
+// 	req.locals = true;
+// 	res.redirect('/');
+// 	return;
 // });
 
-app.post('/signup', (req, res) => {
-	let data = req.body;
-	let justify = data.justify.split('-');
-	let date = new Date();
-	if (justify[0] < 1960 || (date.getYear() - justify[0]) < 18) 
-		res.redirect('/signup');
-	let user = db.searchUser(data.tel, data.address);
-	if (user !== null)
-		//ajouter message erreur user existe deja
-		res.redirect('/signup');
-	// res.redirect('/userView');
-	db.createUser(data);
-	req.locals = 
-	res.redirect('/');
-	return;
-});
+
+
 // app.use( function (req, res, next) {
 // 	res.redirect('error');
 // })//error
