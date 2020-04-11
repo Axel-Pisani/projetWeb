@@ -1,3 +1,21 @@
-{{> header}}
-<p> LOGIN </p>
-{{> footer}}
+{{>header}}
+
+<form action="/login" method="post">
+    <div class="container-fluid bg-dark">
+      <div class="container">
+        <div class="row">
+          <article class="cols-md-12"><br>
+            <h1 style="color: lightgray;"> Connectez-vous </h1><br>
+            <div class="form-group">
+                
+                <p style="color: lightgray;">Identifiant : <input class="form-control" type="text" name="id"></p>
+                <p style="color: lightgray;">Mot de passe : <input class="form-control" type="password" name="pswd"></p>
+               
+            </div>
+            <input class="btn btn-success" type="submit" value="Se Connecter">
+         
+          </div>
+        </div>
+      </div>
+
+{{>footer}}
