@@ -1,9 +1,9 @@
 let sql = require('better-sqlite3');
-let db = sql('../model/db.narguile', { verbose: console.log });
+// let db = sql('../model/db.narguile', { verbose: console.log });
+let db = sql('../model/db.narguile');
 
-/*	CRUDS USER	*/
+/*	CRUDS USER ADMIN*/
 exports.createUser = function (data) {
-	console.log(data);
 	let query = db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?)')
 		.run(null, data.name, data.pwd[0], data.justify, data.address, data.tel,'user');
 	return query;
@@ -18,26 +18,47 @@ exports.readUser = function (id) {
 // exports.search(data, table) {}//search
 
 
-/*
 exports.getNarguile = function () {
 	let narguile = db.prepare('SELECT * FROM narguile').all();
-	let res = [];
-	narguile.forEach((elmeNarg) => {
-		let tabIndex = [];
-		let query = 'SELECT * FROM manche WHERE id = ' + elmeNarg.idManche + ';';
-		let elem = {
-			
-		} 
-
-
-	})//forEach
-	// console.log(narguile[]);
-	// let manche = db.prepare('SELECT * FROM manche').get();
-	// let tuyau = db.prepare('SELECT * FROM tuyau').get();
-	// let tete = db.prepare('SELECT * FROM tete').get();
-	// let diffuseur = db.prepare('SELECT * FROM diffuseur').get();
+	return narguile;
 }//getNarguile
-*/
+
+
+let searchNargile = function (id) {
+	let narguile = db.prepare("SELECT * FROM narguile WHERE id = ? ;").get(id);
+	narguile.forEach((elemNarg) => {
+		let regEx = new RegExp('id');
+		if (regEx.test(Object.keys(elemNarg))) {
+			console.log(elemNarg.idManche);
+			let query = db.prepare('SELECT * FROM manche WHERE id = ? ;').get(elemNarg.idManche);
+			delete elemNarg.idManche;
+			elemNarg.mancheDesc = query.description;
+			elemNarg.manchePhoto = query.photo;
+
+			query = db.prepare('SELECT * FROM tuyau WHERE id = ? ;').get(elemNarg.idTuyau);
+			delete elemNarg.idTuyau;
+			elemNarg.tuyauDesc = query.description;
+			elemNarg.tuyauPhoto = query.photo;
+
+			query = db.prepare('SELECT * FROM tete WHERE id = ? ;').get(elemNarg.idTete);
+			delete elemNarg.idTete;
+			elemNarg.teteDesc = query.description;
+			elemNarg.tetePhoto = query.photo;
+			
+			query = db.prepare('SELECT * FROM diffuseur WHERE id = ? ;').get(elemNarg.idDiffuseur);
+			delete elemNarg.idDiffuseur;
+			elemNarg.diffuseurDesc = query.description;
+			elemNarg.diffuseurPhoto = query.photo;
+		}//if
+	});//forEach
+	console.log(narguile);
+	return narguile;
+}
+
+
+exports.searchNarg = function (id) {
+	return searchNarg(id);
+}//searchNarg
 
 exports.searchUser = function (tel, data) {
 	let query = db.prepare('SELECT * FROM users').all();

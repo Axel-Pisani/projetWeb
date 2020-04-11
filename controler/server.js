@@ -38,15 +38,24 @@ app.use((req, res, next) => {
 // }//is_authenticated
 
 
+/*	  GET    */
+
+
 app.get('/', (req, res) => {
 	res.render('index');
 });
 
 
 app.get('/listNarg', (req, res) => {
-	res.render('listNarg');
+	let narg = db.getNarguile();
+	res.render('listNarg', {narg});
 });
 
+app.get('/infoNarg/:id', (req, res) => {
+	let narg = db.searchNarg(req.params.id);
+	console.log(narg.teteDesc);
+	res.render('infoNarg', {narg})
+})
 
 app.get('/signup', (req, res) => {
 	res.render('registerForm');
@@ -61,7 +70,7 @@ app.get('/signout', (req, res) => {
 
 
 app.get('/signin', (req, res) => {
-	let user = db.
+	// let user = db.
 	req.session.login = true;
 	res.redirect('/listNarg');
 });
