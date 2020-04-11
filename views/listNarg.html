@@ -1,26 +1,70 @@
 {{> header}}
-
-
-	<div class="card" style="width: 18rem;">
-	  <!-- <img src="{{photo}}" class="card-img-top" alt="..."> -->
-		<div class="card-body">
-		    <h5 class="card-title">test</h5>
-		    <h6 class="card-subtitle mb-2 text-muted"></h6>
-		    <p class="card-text"></p>
-	  	</div>
-	  	<ul class="list-group list-group-flush">
-		    <li class="list-group-item"></li>
-		    <li class="list-group-item"></li>
-		    <li class="list-group-item"></li>
-		    <li class="list-group-item"></li>
-	  	</ul>
-	  	<div class="card-body">
-	  {{#login}}
-		    <a href="#" class="card-link">Réserver</a>
-      {{/login}}
-		    <a href="#" class="card-link">Consulter</a>
-		</div>
+	<div class="container-fluid">	
+	  	<div class="row">
+		{{#narg}}
+			<a href="/infoNarg/{{id}}">
+				<div class="col-4 text-center">
+					<div class="card" style="width: 18rem;">
+						<img src="..." class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">{{marque}}</h5>
+							<h6 class="card-subtitle mb-2 text-muted">{{reference}}</h6>
+						</div>
+					</div>
+				</div>
+			</a>
+		{{/narg}}
+		</div> 
 	</div>
-
-
 {{> footer}}
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+		<div class="col-4 text-center">				
+					<div class="card h-100" style="width: 18rem;">
+					  <img src="{{photo}}" class="card-img-top" alt="...">
+						<div class="card-body">
+						    <h5 class="card-title">{{marque}}</h5>
+						    <h6 class="card-subtitle mb-2 text-muted">{{reference}}</h6>
+						    <p class="card-text"></p>
+					  	</div>
+					  	<ul class="list-group list-group-flush">
+						    <li class="list-group-item"></li>
+						    <li class="list-group-item"></li>
+						    <li class="list-group-item">Manche : {{mancheDesc}}</li>
+						    <li class="list-group-item">Tuyau : {{tuyauDesc}}</li>
+						    <li class="list-group-item">Diffuseur : {{diffuseurDesc}}</li>
+						  	{{#authenticated}}
+							    <li class="list-group-item">Nombre disponible : {{quantity}}</li>
+						    {{/authenticated}}
+					  	</ul>
+					  	<div class="card-body">
+						    <a href="#" class="card-link">Consulter</a>
+						    {{#authenticated}}
+							    <a href="#" class="card-link">Réserver</a>
+						    {{/authenticated}}
+						</div> 
+					</div>
+				</div>
+ -->
