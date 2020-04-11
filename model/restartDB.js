@@ -82,22 +82,22 @@ function restart () {
 				  .run(null, 'mohammed', 'mohammed', '1998-04-02', 'chez lui', '0762042543', 'admin');
 
 	query = db.prepare('INSERT INTO manche VALUES (?,?,?,?)')
-				  .run(null, 'aluminium fin avec joint d\'étanchéité', 2, 'photo');
+				  .run(null, 2, 'aluminium fin avec joint d\'étanchéité', 'photo');
 
 	query = db.prepare('INSERT INTO tuyau VALUES (?,?,?,?)')
-				  .run(null, 'tuyau en silicone flexible', 2, 'photo');
+				  .run(null, 2, 'tuyau en silicone flexible', 'photo');
 
 	query = db.prepare('INSERT INTO tete VALUES (?,?,?,?)')
-				  .run(null, 'tête en céramique large', 1, 'photo');
+				  .run(null, 1, 'tête en céramique large', 'photo');
 
 	query = db.prepare('INSERT INTO tete VALUES (?,?,?,?)')
-				  .run(null, 'tête en silicone avec adaptateur', 1, 'photo');
+				  .run(null, 1, 'tête en silicone avec adaptateur', 'photo');
 
 	query = db.prepare('INSERT INTO gout VALUES (?,?,?,?)')
-				  .run(null, 'goût aldalya fraise framboise', 1, 'photo');
+				  .run(null, 1, 'goût aldalya fraise framboise', 'photo');
 
 	query = db.prepare('INSERT INTO diffuseur VALUES (?,?,?,?)')
-				  .run(null, 'diffuseur en aluminium', 1, 'photo');
+				  .run(null, 1, 'diffuseur en aluminium', 'photo');
 
 	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
 				  .run(null, 1, 'El-Badia', 'Celeste X3', 1, 1, 1, 1, 'photo');
