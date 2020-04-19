@@ -40,7 +40,7 @@
                     </li>
                     
                     <li class="nav-item">
-                      <a class="btn btn-light" href="/registerForm">Inscription</a>
+                      <a class="btn btn-light" href="/signup">Inscription</a>
                     </li>
                     {{#authenticated}}
                         <li class="nav-item">
@@ -49,9 +49,18 @@
                     {{/authenticated}}
                     {{^authenticated}}
                         <li class="nav-item">
-                          <a class="btn btn-light" href="/signin">Connexion</a>
+                          <a class="btn btn-light" href="/login">Connexion</a>
                         </li>
                     {{/authenticated}}
+                    {{#admin}}
+                        <li class="nav-item">
+                          <a class="btn btn-light" href="/managementUser">Utilisateurs</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="btn btn-light" href="/addNarg">Ajout nagruilé</a>
+                        </li>
+                    {{/admin}}
+
                   </ul>
                 </div>
                 <div class="navbar-nav">
