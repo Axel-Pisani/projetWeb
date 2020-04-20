@@ -6,37 +6,34 @@
     <a class="btn btn-danger" href="/">ANNULER</a>
   </div>  
 </nav>
-  <form action="/create" method="post">
-    <div class="container-fluid">
-      <div class="container">
-        <div class="row">
-          <article class="cols-md-12"><br>
-            <h1 style="color: lightgray;"> Ajouter une nouvelle Chicha </h1><br>
-            <div class="form-group">
-              <label for="exampleFormControlSelect1" style="color: lightgray;">Nom :</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option></option>
-                  <option>Celeste</option>
-                  <option>Mia</option>
-                  <option>Ovni</option>
-                  <option>Oduman</option>
-                </select><br>
+<form action="/addNarg" method="post">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <article class="cols-md-12"><br>
+          <h1 style="color: lightgray;"> Ajouter une nouvelle Chicha </h1><br>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="exampleFormControlSelect1" style="color: lightgray;">Marque :</label>
+                <input type="text" class="form-control" name="marque" required>
+              </div>
+              <div class="form-group col-md-6">
               <label for="exampleFormControlSelect2" style="color: lightgray;">Modèle :</label>
-                <select class="form-control" id="exampleFormControlSelect2">
-                  <option></option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </select><br>
-            <p style="color: lightgray;">Description : <br> <textarea class="form-control" name="description"></textarea></p>
-            <p style="color: lightgray;">Image : <input class="form-control" type="text" name="img"></p>
+              <input type="text" class="form-control" name="model" required>
             </div>
-
-            <input class="form-control btn btn-warning" type="submit" value="Créer">
           </div>
-        </div>
+            <label for="exampleFormControlSelect1" style="color: lightgray;">Description :</label>
+            <textarea class="form-control" name="description" required></textarea>
+            
+            <label for="exampleFormControlSelect1" style="color: lightgray;">Image :</label>
+            <input class="form-control" type="file" name="img" required>
+          </div>
+          <input class="form-control btn btn-warning" type="submit" value="Ajouter">
+        </article>
       </div>
     </div>
+  </div>
+</form>
 
 {{> footer}}

@@ -60,7 +60,7 @@ function reset () {
 		' idTuyau INTEGER NOT NULL REFERENCES tuyau, ' +
 		' idTete INTEGER NOT NULL REFERENCES tete, ' +
 		' idDiffuseur INTEGER NOT NULL REFERENCES diffuseur, ' +
-		' photo VARCHAR2(150) NOT NULL);').run();    
+		' photo VARCHAR2(150) NOT NULL);').run();
 
 	query = db.prepare('CREATE TABLE location (' +
 		' id INTEGER PRIMARY KEY AUTOINCREMENT, ' +

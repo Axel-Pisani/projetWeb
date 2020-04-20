@@ -2,70 +2,80 @@ let sql = require('better-sqlite3');
 // let db = sql('../model/db.narguile', { verbose: console.log });
 let db = sql('../model/db.narguile');
 
-/*	CRUDS USER ADMIN*/
+
+/*    CRUDS USER ADMIN    */
 exports.createUser = function (data) {
-	let query = db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?)')
+	let query = db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?);')
 		.run(null, data.name, data.pwd[0], data.justify, data.address, data.tel,'user');
 	return query;
 }//create
 
 exports.readUser = function (id) {
-	let query = db.prepare('SELECT * FROM ? WHERE id = ?').get(table, id);
+	let query = db.prepare('SELECT * FROM users WHERE id = ?;').get(id);
 	return query; 
 };//read
-// exports.update(id) {}//update
-// exports.delete(id) {}//delete
-// exports.search(data, table) {}//search
 
+
+// /*    CRUDS MANAGEMENT USER    */
+exports.getUser = function () {
+	let query = db.prepare('SELECT * FROM users;').all();
+	return query;
+}
+
+// exports.updateUser = function (id) {}//update
+exports.deleteUser = function (id) {
+	let query = db.prepare('DELETE FROM users WHERE id = ?;').get(id);
+}//delete
+
+exports.searchUser = function (name, password) {
+	let query = db.prepare('SELECT * FROM users WHERE name = ? AND password = ?').get(name, password);
+	return query;
+}//search
+
+
+
+/*    CRUDS MANAGEMENT NAGUILE    */
+
+
+/*    METHOD    */
 
 exports.getNarguile = function () {
-	let narguile = db.prepare('SELECT * FROM narguile').all();
+	let narguile = db.prepare('SELECT * FROM narguile;').all();
 	return narguile;
 }//getNarguile
 
+exports.searchNargile = function (id) {
+	let narguile = db.prepare('SELECT *, '+
+		 'm.description AS "mancheDesc", ' +
+		 't.description AS "tuyauDesc", ' +
+		 'd.description AS "diffuseurDesc", ' +
+		 'te.description AS "teteDesc" ' +
+		'FROM narguile n ' +
+		 'JOIN manche m ON n.idManche = m.id ' +
+		 'JOIN tuyau t ON n.idTuyau = t.id ' +
+		 'JOIN diffuseur d ON n.idDiffuseur = d.id ' +
+		 'JOIN tete te ON n.idTete = te.id ' +
+		'WHERE n.id = ?').get(id);
+	
+	// let query = db.prepare('SELECT * FROM manche WHERE id = ? ;').get(narguile.idManche);
+	// delete narguile.idManche;
+	// narguile.mancheDesc = query.description;
+	// narguile.manchePhoto = query.photo;
 
-let searchNargile = function (id) {
-	let narguile = db.prepare("SELECT * FROM narguile WHERE id = ? ;").get(id);
-	narguile.forEach((elemNarg) => {
-		let regEx = new RegExp('id');
-		if (regEx.test(Object.keys(elemNarg))) {
-			console.log(elemNarg.idManche);
-			let query = db.prepare('SELECT * FROM manche WHERE id = ? ;').get(elemNarg.idManche);
-			delete elemNarg.idManche;
-			elemNarg.mancheDesc = query.description;
-			elemNarg.manchePhoto = query.photo;
+	// query = db.prepare('SELECT * FROM tuyau WHERE id = ? ;').get(narguile.idTuyau);
+	// delete narguile.idTuyau;
+	// narguile.tuyauDesc = query.description;
+	// narguile.tuyauPhoto = query.photo;
 
-			query = db.prepare('SELECT * FROM tuyau WHERE id = ? ;').get(elemNarg.idTuyau);
-			delete elemNarg.idTuyau;
-			elemNarg.tuyauDesc = query.description;
-			elemNarg.tuyauPhoto = query.photo;
-
-			query = db.prepare('SELECT * FROM tete WHERE id = ? ;').get(elemNarg.idTete);
-			delete elemNarg.idTete;
-			elemNarg.teteDesc = query.description;
-			elemNarg.tetePhoto = query.photo;
-			
-			query = db.prepare('SELECT * FROM diffuseur WHERE id = ? ;').get(elemNarg.idDiffuseur);
-			delete elemNarg.idDiffuseur;
-			elemNarg.diffuseurDesc = query.description;
-			elemNarg.diffuseurPhoto = query.photo;
-		}//if
-	});//forEach
-	console.log(narguile);
+	// query = db.prepare('SELECT * FROM tete WHERE id = ? ;').get(narguile.idTete);
+	// delete narguile.idTete;
+	// narguile.teteDesc = query.description;
+	// narguile.tetePhoto = query.photo;
+	
+	// query = db.prepare('SELECT * FROM diffuseur WHERE id = ? ;').get(narguile.idDiffuseur);
+	// delete narguile.idDiffuseur;
+	// narguile.diffuseurDesc = query.description;
+	// narguile.diffuseurPhoto = query.photo;
+	
 	return narguile;
 }
-
-
-exports.searchNarg = function (id) {
-	return searchNarg(id);
-}//searchNarg
-
-exports.searchUser = function (tel, data) {
-	let query = db.prepare('SELECT * FROM users').all();
-	query.forEach((user) => {
-		if (address == user.address || 
-			tel == user.tel ) 
-			return query;
-	});
-	return null;
-};//read
