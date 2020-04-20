@@ -24,7 +24,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 	COOKIE
 *************/
 let cookieSession = require('cookie-session');
-
 app.use(cookieSession({
  	secure: false,
  	expires: MAX_AGE_COKKIE,
@@ -124,9 +123,9 @@ app.get('/addNarg', (req, res) => {
 	res.render('addNarg');
 })
 
-app.get('/managementUser', (req, res) =>{
-	res.render('managementUser');
-})//managementUser
+// app.get('/managementUser', (req, res) =>{
+// 	res.render('managementUser');
+// })//managementUser
 
 
 /*****************	  
