@@ -11,9 +11,12 @@ let mustache = require ('mustache-express');
 app.engine('html', mustache());
 app.set('view engine', 'html');
 app.set('views', '../views');
-app.use('/views', express.static(__dirname + '/views'));
-app.use('/model', express.static(__dirname + '../model'));
-app.use('/assets', express.static(__dirname + '../model/assets'));
+app.use('/views', express.static('../views'));
+// app.use(express.static('../views'));
+app.use(express.static('../model'));
+
+// app.use('/model', express.static(__dirname + '../model'));
+// app.use('/assets', express.static(__dirname + '../model/assets'));
 
 const MAX_AGE_COKKIE = new Date(Date.now() + 24*60*60*1000);
 
