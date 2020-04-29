@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-sm-12 col-12 p-0">
-					<h1 class="profil"> Modifier votre profil </h1>
+					<h1 class="profil" id="inputUser"> Modifier votre profil </h1>
 					{{#messageError}}
 						<div class="alert alert-danger" role="alert">
 							{{messageError}}
@@ -22,7 +22,7 @@
 								</h2>
 							</div>
 							<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-								<div class="card-body">
+								<div class="card-body" id="inputUser">
 
 									<p> Nom : 
 										<input class="form-control" type="text" name="name" value="{{name}}"></p>
@@ -47,7 +47,7 @@
 								</h2>
 							</div>
 							<div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
-								<div class="card-body">
+								<div class="card-body" id="inputUser">
 									<p> Nouveau mot de passe : 
 										<input class="form-control" type="password" name="password">
 									</p>
