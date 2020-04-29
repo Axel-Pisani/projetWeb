@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif|Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Baloo+Thambi+2|Lobster&display=swap');
 
 :root{
     --light-gray: #2b3032a1;
@@ -146,4 +147,52 @@ header .site-title{
 
 .second-container{
     background-color: #e7e7e7;
+}
+
+#inputColor{
+    color: lightgray;
+}
+
+#inputUser{
+    color: black;
+}
+
+#fond{
+    background: url(../model/assets/517194.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+#fond2{
+    background: url(../model/assets/5171942.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+#title{
+    font-style: italic;
+    font-family: 'Lobster', cursive;
+}
+
+#amuPic{
+    width:200px;
+    height:100px
+}
+
+#elContainer{
+    width: 1920px;
+    height: 720px;
+}
+
+#elNavBar{
+    background-color: rgb(230, 230, 230);
+}
+
+#btn{
+    margin-right: 10px;
+    border: inset;
+    border-width: 1px;
+    border-color: coral;
 }
