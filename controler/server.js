@@ -15,7 +15,11 @@ app.engine('html', mustache());
 app.set('view engine', 'html');
 app.set('views', '../views');
 app.use('/views', express.static('../views'));
+app.use('/model', express.static('../model'));
+app.use('/assets', express.static('../model/assets'))
 app.use(express.static('../model'));
+app.use(express.static('../model/assets'));
+
 
 const MAX_AGE_COKKIE = new Date(Date.now() + 24*60*60*1000);
 
@@ -114,6 +118,11 @@ app.get('/infoNarg/:id', (req, res) => {
 //OK
 app.get('/signup', (req, res) => {
 	res.render('registerForm');
+});
+
+
+app.get('/hassoul', (req, res) => {
+	res.render('hassoul');
 });
 
 
