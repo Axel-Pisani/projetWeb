@@ -1,75 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Location</title>
-    
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" href="/views/style.css">
-    
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Location</title>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+	<link rel="stylesheet" href="/views/style.css">
+	
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-12 col-12">
-                    <img src="/assets/celesteBanner.png" alt="celeste">
-                </div>
-                <div class="col-md-4 col-12 text-center">
-                    <h2 class="my-md-3 site-title text-white">LOCATION CHICHA</h2>
-                </div>
-                <div class="col-md-4 col-12 text-right">
-                    <img src="foyerBanner.png" alt="foyer">
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid p-0">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/">Narguiland</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="btn btn-light" href="/listNarg">Toute les Chichas <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-light" href="/signup">Inscription</a>
-                        </li>
-                        {{#authenticated}}
-                            <li class="nav-item">
-                                <a class="btn btn-light" href="/signout">Déconnexion</a>
-                            </li>
-                        {{/authenticated}}
-                        {{^authenticated}}
-                            <li class="nav-item">
-                                <a class="btn btn-light" href="/login">Connexion</a>
-                            </li>
-                        {{/authenticated}}
-                        {{#admin}}
-                            <!-- <li class="nav-item">
-                                <a class="btn btn-light" href="/managementUser">Utilisateurs</a>
-                            </li> -->
-                            <li class="nav-item">
-                                <a class="btn btn-light" href="/addNarg">Ajout nagruilé</a>
-                            </li>
-                        {{/admin}}
-                    </ul>
-                </div>
-                <div class="navbar-nav">
-                    <a class="shop-button" type="button" href="/cart">
-                        <li class="nav-item border rounded-circle mx-2 bag-icon">
-                            <i class="fas fa-shopping-bag p-2"></i>
-                        </li>
-                    </a>
-                </div>
-              </nav>
-        </div>
-    </header>
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-sm-12 col-12">
+					<img src="/assets/celesteBanner.png" alt="celeste">
+				</div>
+				<div class="col-md-4 col-12 text-center">
+					<h2 class="my-md-3 site-title text-white">LOCATION CHICHA</h2>
+				</div>
+				<div class="col-md-4 col-12 text-right">
+					<img src="foyerBanner.png" alt="foyer">
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid p-0">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="/">Narguiland</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item active">
+							<a class="btn btn-light" href="/listNarg">Toute les Chichas <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="btn btn-light" href="/signup">Inscription</a>
+						</li>
+						{{#authenticated}}
+							<li class="nav-item">
+								<a class="btn btn-light" href="/signout">Déconnexion</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-light" href="/userSettings">Compte</a>
+							</li>
+						{{/authenticated}}
+						{{^authenticated}}
+							<li class="nav-item">
+								<a class="btn btn-light" href="/login">Connexion</a>
+							</li>
+						{{/authenticated}}
+						{{#admin}}
+							<li class="nav-item">
+								<a class="btn btn-light" href="/userSettings">Utilisateurs enregsité</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-light" href="/addNarg">Ajout nagruilé</a>
+							</li>
+						{{/admin}}
+					</ul>
+				</div>
+				<div class="navbar-nav">
+					<a class="shop-button" type="button" href="/cart">
+						<li class="nav-item border rounded-circle mx-2 bag-icon">
+							<i class="fas fa-shopping-bag p-2"></i>
+						</li>
+					</a>
+				</div>
+			  </nav>
+		</div>
+	</header>
 
-      
+	  

@@ -1,29 +1,36 @@
 {{> header}}
 <form action="/signup" method="post">
-    <div class="container-fluid">
-      <div class="container">
-        <div class="row">
-          <article class="cols-md-12"><br>
-            <h1 style="color: lightgray;"> Formulaire d'inscription </h1><br>
-            <div class="form-group">
-                {{#messageError}}
-                <div class="alert alert-danger" role="alert">
-                    {{messageError}}
-                </div>
-                {{/messageError}}
-                <p style="color: lightgray;">Nom : <input class="form-control" type="text" name="name" value="{{name}}" required></p>
-                <p style="color: lightgray;">Mot de passe : <input class="form-control" type="password" name="password" required></p>
-                <p style="color: lightgray;">Confirmer mot de passe : <input class="form-control" type="password" name="checkPassword" required></p>
-                <p style="color: lightgray;">Date de Naissance : <br> <input type="date" name="justify" valut="{{justify}}" required></p>
-                <p style="color: lightgray;">Adresse : <br> <input type="text" name="address" value="{{adress}}" required></p>
-                <p style="color: lightgray;">Téléphone : <input class="form-control" type="tel" name="tel" value="{{tel}}" required></p>
-                <p style="color: lightgray;">J'atteste avoir plus de 18 ans et j'accepte les termes du contrat <br>que personne lis tmtc mais on est obligé de le mettre pour des <br>raisons de sécu voili voilou. <input type="checkbox" required>
-                </p>
-            </div>
-            <input class="btn btn-success" type="submit" value="Créer">
-          </div>
-        </div>
-      </div>
-    </div>
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<article class="cols-md-12"><br>
+					<h1> Formulaire d'inscription </h1><br>
+					<div class="form-group">
+						{{#messageError}}
+						<div class="alert alert-danger" role="alert">
+							{{messageError}}
+						</div>
+						{{/messageError}}
+
+						<p> Nom : <input class="form-control" type="text" name="name" value="{{name}}" required></p>
+
+						<p> Mot de passe : <input class="form-control" type="password" name="password" required></p>
+
+						<p> Confirmer mot de passe : <input class="form-control" type="password" name="checkPassword" required></p>
+
+						<p> Date de Naissance : <br> <input type="date" name="justify" valut="{{justify}}" required></p>
+
+						<p> Adresse : <br> <input type="text" name="address" value="{{adress}}" required></p>
+
+						<p> Téléphone : <input class="form-control" type="tel" name="tel" value="{{tel}}" required></p>
+						
+						<p> J'atteste avoir plus de 18 ans et j'accepte les termes du contrat <br>que personne lis tmtc mais on est obligé de le mettre pour des <br>raisons de sécu voili voilou. <input type="checkbox" required>
+						</p>
+					</div>
+					<input class="btn btn-success" type="submit" value="Créer">
+				</div>
+			</div>
+		</div>
+	</div>
 </form>
 {{> footer}}

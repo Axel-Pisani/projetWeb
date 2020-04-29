@@ -6,7 +6,7 @@ let db = sql('../model/db.narguile');
 /*    CRUDS USER ADMIN    */
 exports.createUser = function (data) {
 	let query = db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?);')
-		.run(null, data.name, data.pwd[0], data.justify, data.address, data.tel,'user');
+		.run(null, data.name, data.password, data.justify, data.address, data.tel,'user');
 	return query;
 }//create
 
@@ -15,6 +15,13 @@ exports.readUser = function (id) {
 	return query; 
 };//read
 
+
+exports.updateUser = function (data) {
+	let query = db.prepare('UPDATE users SET name = ?, password = ?, justify = ?, address = ?, tel = ? WHERE id = ?;')
+				  .run(data.name, data.password, data.justify, 
+					   data.address, data.tel, data.id);
+	return query;
+};//update
 
 // /*    CRUDS MANAGEMENT USER    */
 exports.getUser = function () {
@@ -79,3 +86,10 @@ exports.searchNargile = function (id) {
 	
 	return narguile;
 }
+
+
+exports.getUsernameOfUser = function (username) {
+	let query = db.prepare('SELECT * FROM users WHERE name = ?;').all(username);
+	return query;
+}
+
