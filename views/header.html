@@ -50,23 +50,19 @@
 								<a class="btn btn-light" id="btn" href="/login">Connexion</a>
 							</li>
 						{{/user}}
-						
-					</ul>
-				</div>
-				<div class="navbar-nav">
 					{{#admin}}
-							<li class="nav-item">
-								<a class="btn btn-light"id="adminBtn" href="/addNarg">Ajout nagruilé</a>
-							</li>
-							<li class="nav-item">
-								<a class="btn btn-light" id="adminBtn" href="/intermediaryNargManagment">Gestion narguilés</a>
-							</li>
-							<li class="nav-item">
-								<a class="btn btn-light" id="adminBtn" href="/intermediaryUserManagment">Gestion users</a>
-							</li>
-							<li class="nav-item">
-								<a class="btn btn-light" id="adminBtn" href="/intermediaryRentalManagment">Gestion locations</a>
-							</li>
+						<li class="nav-item">
+							<a class="btn btn-light"id="adminBtn" href="/addNarg">Ajout nagruilé</a>
+						</li>
+						<li class="nav-item">
+							<a class="btn btn-light" id="adminBtn" href="/intermediaryNargManagment">Gestion narguilés</a>
+						</li>
+						<li class="nav-item">
+							<a class="btn btn-light" id="adminBtn" href="/intermediaryUserManagment">Gestion users</a>
+						</li>
+						<li class="nav-item">
+							<a class="btn btn-light" id="adminBtn" href="/intermediaryRentalManagment">Gestion locations</a>
+						</li>
 					{{/admin}}
 					{{#authenticated}}
 						<a class="user-cog" type="button" href="/userSettings">
@@ -80,8 +76,9 @@
 							<i class="fas fa-shopping-bag p-2"></i>
 						</li>
 					</a>
+					</ul>
 				</div>
-			  </nav>
+		  	</nav>
 		</div>
 	</header>
 
