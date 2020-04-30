@@ -218,6 +218,7 @@ header .site-title{
 
 #smallBtn:hover{
     color: coral;
+    background-color: black;
     transform: scale(1.2);
     box-shadow: 5px 5px rgba(59, 59, 59, 0.151);
 }
