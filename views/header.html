@@ -50,11 +50,12 @@
 								<a class="btn btn-light" id="btn" href="/login">Connexion</a>
 							</li>
 						{{/user}}
-						
-					</ul>
-				</div>
-				<div class="navbar-nav">
-					{{#admin}}
+						{{#authenticated}}
+						<li class="nav-item">
+							<a class="btn btn-light" id="btn" href="/userSettings"><i class="fas fa-user-cog p-1"></i></a>
+						</li>
+						{{/authenticated}}
+						{{#admin}}
 							<li class="nav-item">
 								<a class="btn btn-light"id="adminBtn" href="/addNarg">Ajout nagruilé</a>
 							</li>
@@ -67,14 +68,12 @@
 							<li class="nav-item">
 								<a class="btn btn-light" id="adminBtn" href="/intermediaryRentalManagment">Gestion locations</a>
 							</li>
-					{{/admin}}
-					{{#authenticated}}
-						<a class="user-cog" type="button" href="/userSettings">
-							<li class="nav-item rounded-circle mx-2" id="smallBtn">
-								<i class="fas fa-user-cog p-2"></i>                      
-							</li>
-						</a>
-					{{/authenticated}}
+						{{/admin}}
+					
+					</ul>
+				</div>
+				<div class="navbar-nav">
+					
 					<a class="shop-button" type="button" href="/cart">
 						<li class="nav-item rounded-circle mx-2 bag-icon" id="smallBtn">
 							<i class="fas fa-shopping-bag p-2"></i>

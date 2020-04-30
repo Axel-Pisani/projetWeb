@@ -204,7 +204,7 @@ header .site-title{
 
 #btn:hover{
     background-color: rgb(255, 239, 233);
-    transform: scale(1.2);
+    transform: scale(1.1);
     box-shadow: 5px 5px rgba(59, 59, 59, 0.151);
 }
 
