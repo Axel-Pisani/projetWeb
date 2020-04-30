@@ -42,6 +42,23 @@ exports.searchUser = function (name, password) {
 
 
 /*    CRUDS MANAGEMENT NAGUILE    */
+exports.getNarguileManagement = function () {
+	let query = db.prepare('SELECT *, '+
+		 'te.quantity AS "teteQuant", ' +
+		 'te.description AS "teteDesc", ' +
+		 'm.description AS "mancheDesc", ' +
+		 'm.quantity AS "mancheQuant", ' +
+		 't.description AS "tuyauDesc", ' +
+		 't.quantity AS "tuyauQuant", ' +
+		 'd.description AS "diffuseurDesc", ' +
+		 'd.quantity AS "diffuseurQuant" ' +
+		'FROM narguile n ' +
+		 'JOIN manche m ON n.idManche = m.id ' +
+		 'JOIN tuyau t ON n.idTuyau = t.id ' +
+		 'JOIN diffuseur d ON n.idDiffuseur = d.id ' +
+		 'JOIN tete te ON n.idTete = te.id ;').all();
+	return query;
+}
 
 
 /*    METHOD    */
@@ -53,10 +70,14 @@ exports.getNarguile = function () {
 
 exports.searchNargile = function (id) {
 	let narguile = db.prepare('SELECT *, '+
+		 'te.quantity AS "teteQuant", ' +
+		 'te.description AS "teteDesc", ' +
 		 'm.description AS "mancheDesc", ' +
+		 'm.quantity AS "mancheQuant", ' +
 		 't.description AS "tuyauDesc", ' +
+		 't.quantity AS "tuyauQuant", ' +
 		 'd.description AS "diffuseurDesc", ' +
-		 'te.description AS "teteDesc" ' +
+		 'd.quantity AS "diffuseurQuant" ' +
 		'FROM narguile n ' +
 		 'JOIN manche m ON n.idManche = m.id ' +
 		 'JOIN tuyau t ON n.idTuyau = t.id ' +

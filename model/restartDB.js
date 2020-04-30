@@ -64,6 +64,7 @@ function reset () {
 
 	query = db.prepare('CREATE TABLE location (' +
 		' id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
+		' idUser INTEGER NOT NULL REFERENCES users, ' +
 		' idNarg INTEGER NOT NULL REFERENCES narguile, ' +
 		' idManche INTEGER NOT NULL REFERENCES manche, ' +
 		' idTuyau INTEGER NOT NULL REFERENCES tuyau, ' +

@@ -37,28 +37,34 @@
 						<li class="nav-item active">
 							<a class="btn btn-light" href="/listNarg">Toute les Chichas <span class="sr-only">(current)</span></a>
 						</li>
-						<li class="nav-item">
-							<a class="btn btn-light" href="/signup">Inscription</a>
-						</li>
-						{{#authenticated}}
+						{{#user}}
 							<li class="nav-item">
 								<a class="btn btn-light" href="/signout">Déconnexion</a>
 							</li>
 							<li class="nav-item">
 								<a class="btn btn-light" href="/userSettings">Compte</a>
 							</li>
-						{{/authenticated}}
-						{{^authenticated}}
+						{{/user}}
+						{{^user}}
+							<li class="nav-item">
+								<a class="btn btn-light" href="/signup">Inscription</a>
+							</li>
 							<li class="nav-item">
 								<a class="btn btn-light" href="/login">Connexion</a>
 							</li>
-						{{/authenticated}}
+						{{/user}}
 						{{#admin}}
 							<li class="nav-item">
-								<a class="btn btn-light" href="/userSettings">Utilisateurs enregsité</a>
+								<a class="btn btn-light" href="/addNarg">Ajout nagruilé</a>
 							</li>
 							<li class="nav-item">
-								<a class="btn btn-light" href="/addNarg">Ajout nagruilé</a>
+								<a class="btn btn-light" href="/intermediaryNargManagment">Gestion narguilés</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-light" href="/intermediaryUserManagment">Gestion users</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-light" href="/intermediaryRentalManagment">Gestion locations</a>
 							</li>
 						{{/admin}}
 					</ul>

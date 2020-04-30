@@ -1,0 +1,97 @@
+{{>header}}
+<div class="accordion" id="accordionExample">
+	<ul class="list-group list-group-flush">
+	  	{{#nargs}}
+		  	<li class="list-group-item">
+			  	<a href="/dbNargSet/{{id}}">
+			  		{{marque}} {{reference}}<br>
+			        manche({{mancheDesc}})		
+			        tuyau({{tuyauDesc}})<br>
+			        tête({{teteDesc}})		
+			        diffuseur({{diffuseurDesc}})		
+			  	</a>
+			</li>
+		{{/nargs}}
+		{{#users}}
+	  		<li class="list-group-item">
+	  			<a href="/dbUserSet/{{id}}">
+			  		numéro : {{id}}		
+			  		nom : {{name}}		
+			  	</a>
+	  		</li>
+		{{/users}}
+		{{#rental}}
+		  	<li class="list-group-item">
+		  		<a href="/dbUserSet/{{id}}">
+			  		{{id}}		
+			  	</a>	
+		  	</li>
+		{{/rental}}
+	</ul>
+</div>
+{{>footer}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="accordion" id="accordionExample">
+       {{#rentals}}
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                LOCATION
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              <form action="/updateLoc/{{id}}">
+                <label>Marque : <input class="form-control" type="text" name="marque" value="{{marque}}" required></label>
+                <label>Manche : <input class="form-control" type="text" name="manche" value="{{manche}}" required></label>
+                <label>Tuyau : <input class="form-control" type="text" name="tuyau" value="{{tuyau}}" required></label>
+                <label>Tete : <input class="form-control" type="text" name="tete" value="{{tete}}" required></label>
+                <label>Diffuseur : <input class="form-control" type="text" name="diffuseur" value="{{diffuseur}}" required></label>
+                <label>Goût : <input class="form-control" type="text" name="gout" value="{{gout}}" required></label>
+              </form>
+              <form action="/updateM"></form>
+            </form>  
+            </div>
+          </div>
+        </div>
+      {{/rentals}}
+      {{#users}}
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                USER
+              </button>
+            </h2>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+              <form action="">
+                <label> Nom : <input type="text" name="nom" value="{{name}}" required></label>
+                <label> Mot de Passe : <input type="text" name="password" value="{{password}}" required></label>
+                <label> Adresse : <input type="text" name="adresse" value="{{adress}}" required></label>
+                <label> Téléphone : <input type="number" name="telephone" value="{{tel}}" required></label>
+                <label> Rôle : <input type="text" name="role" value="{{role}}" required></label>
+                <label> Justification : <input type="date" name="justification" value="{{justify}}" required></label>
+              </form>
+            </div>
+          </div>
+        </div>
+      {{/users}}
+
+      </div>
