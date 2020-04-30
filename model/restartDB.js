@@ -107,8 +107,8 @@ function restart () {
 				  .run(null, 1, 'ODUMAN', 'N5-Z JUNIOR', 1, 1, 2, 1, 'photo');
 	
 	let date = Math.round(new Date().getTime()/1000);
-	query = db.prepare('INSERT INTO location VALUES (?,?,?,?,?,?,?,?,?)')
-				  .run(null, 1, 1, 1, 1, 1, 1, date, date + 3600);
+	query = db.prepare('INSERT INTO location VALUES (?,?,?,?,?,?,?,?,?,?)')
+				  .run(null, 1, 1, 1, 1, 1, 1, 1, date, date + 3600);
 
 	query = db.prepare('SELECT * FROM users').all();
 	console.log('users : ');
