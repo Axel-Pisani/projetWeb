@@ -1,43 +1,11 @@
-// "use strict"
-
 /*************
-	EXPRESS
-**************/ 
+	MODULE
+**************/
 let formidable = require('formidable');
-let express = require('express');
-let app = express();
-
 let mustache = require ('mustache-express');
-
 let crypto = require('crypto');
-
-app.engine('html', mustache());
-app.set('view engine', 'html');
-app.set('views', '../views');
-app.use('/views', express.static('../views'));
-app.use('/model', express.static('../model'));
-app.use('/assets', express.static('../model/assets'))
-app.use(express.static('../model'));
-app.use(express.static('../model/assets'));
-
-const MAX_AGE_COKKIE = new Date(Date.now() + 24*60*60*1000);
-
 let bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }));
-
-
-/************   
-	COOKIE
-*************/
 let cookieSession = require('cookie-session');
-app.use(cookieSession({
-	secure: false,
-	expires: MAX_AGE_COKKIE,
-	httpOnly: true,
-	overwrite: true,
-	keys: ['key1', 'key2']
-}));
-
 
 
 /***********
@@ -46,23 +14,25 @@ app.use(cookieSession({
 let db = require('../model/model');
 
 
+/*************
+	EXPRESS
+**************/
+let express = require('express');
+let app = express();
+
+app.engine('html', mustache());
+app.set('view engine', 'html');
+app.set('views', '../views');
+
 /************************
 		MIDDELWER    
 *************************/ 
-app.use((req, res, next) => {
-	if(req.session.admin) {
-		res.locals = {
-			user: req.session.user,
-			admin: true
-		};
-		return next();
-	} else if (req.session.user) {
-		res.locals = {
-			user: req.session.user
-		};
-	}
-	next();
-});
+app.use('/views', express.static('../views'));
+app.use('/model', express.static('../model'));
+app.use('/assets', express.static('../model/assets'))
+app.use(express.static('../model'));
+app.use(express.static('../model/assets'));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 let isAdmin = function (req, res, next) {
 	if(req.session.admin != true) {
@@ -86,7 +56,36 @@ let isRightUser = function (req, res, next) {
 		return;
 	}
 	next();
+
 }//isAuthenticated
+
+
+/************   
+	COOKIE
+*************/
+const MAX_AGE_COKKIE = new Date(Date.now() + 24*60*60*1000);
+app.use(cookieSession({
+	secure: false,
+	expires: MAX_AGE_COKKIE,
+	httpOnly: true,
+	overwrite: true,
+	keys: ['key1', 'key2']
+}));
+
+app.use((req, res, next) => {
+	if(req.session.admin) {
+		res.locals = {
+			user: req.session.user,
+			admin: true
+		};
+		return next();
+	} else if (req.session.user) {
+		res.locals = {
+			user: req.session.user
+		};
+	}
+	next();
+});
 
 /******************
 		GET
@@ -96,51 +95,48 @@ app.get('/', (req, res) => {
 });
 
 
-//OK
-app.get('/listNarg', (req, res) => {
-	let narg = db.getNarguile();
-	res.render('listNarg', {narg});
-});
-
-
-//Ok
-app.get('/infoNarg/:id', (req, res) => {
-	let narg = db.searchNargile(req.params.id);
-	res.render('info-narg', narg);
-});
-
-
-//OK
 app.get('/signup', (req, res) => {
 	res.render('registerForm');
 });
 
-
-//OK
 app.get('/signout', (req, res) => {
 	req.session = null;
 	res.redirect('/');
 });
 
-
-//ok
 app.get('/login', (req, res) => {
 	res.render('login');
 });
 
+app.get('/userSettings', isUser, (req, res) => {
+	let user = db.readUser(req.session.user);
+	res.render('userSettings', user);
+});//managementUser
+
+
+app.get('/listNarg', (req, res) => {
+	let narg = db.getNarguile();
+	res.render('listNarg', {narg});
+});
+
+app.get('/infoNarg/:id', (req, res) => {
+	let narg = db.searchNargile(req.params.id);
+	res.render('info-narg', narg);
+});
 
 app.get('/addNarg', isAdmin, (req, res) => {
 	res.render('addNarg');
-})
-
-app.get('/dbNargset/:id', isAdmin, (req, res) => {
-	let narg = db.searchNargile(req.params.id);
-	res.render('dbManagment', {narg});
 });
+
 
 app.get('/intermediaryNargManagment', isAdmin, (req, res) => {
 	let nargs = db.getNarguileManagement();
 	res.render('intermediaryManagment', {nargs});
+});
+
+app.get('/dbNargset/:id', isAdmin, (req, res) => {
+	let narg = db.searchNargile(req.params.id);
+	res.render('dbManagment', {narg});
 });
 
 app.get('/userManagment', isAdmin, (req, res) => {
@@ -153,22 +149,15 @@ app.get('/rentalManagment', isAdmin, (req, res) => {
 	res.render('dbManagment');
 });
 
-//Ok
-app.get('/userSettings', isUser, (req, res) => {
-	let user = db.readUser(req.session.user);
-	res.render('userSettings', user);
-})//managementUser
-
 
 /*****************
 		POST
 ******************/
+//methode non implémenté
 app.post('/create', (req, res) => {
 	redirect('/');
 });
 
- 
-//OK
 app.post('/login', (req, res) => {
 	if (req.body.name == undefined || req.body.password == undefined) {
 		let messageError = {messageError: "identifiant ou mot de passe manquant"};
@@ -187,8 +176,7 @@ app.post('/login', (req, res) => {
 });//login
 
 
-//ajout reg exp pour les tel
-//ajout reg exp pour pwd avec les espace au milieux en plus d'un trim pour les esapces autour
+//en cours d'implémentations
 app.post('/signup', (req, res) => {	
 	let dataIsCheck = verificationUserData(req.body);
 	if (dataIsCheck.messageError !== undefined) {
@@ -202,7 +190,7 @@ app.post('/signup', (req, res) => {
 	res.redirect('/');
 });
 
-//ajouter véréfication des fichiers
+//en cours d'implémentations
 app.post('/addNarg', isAdmin, (req, res) => {
  //    var form = new formidable.IncomingForm();
 	// if (!req.files || Object.keys(req.files).length === 0)
@@ -237,7 +225,6 @@ app.use((req, res, next) => {
 /*********************
 		METHOD
 **********************/
-
 let usernameIsAvailable = function (data) {
 	data.name = data.name.trim();
 	if (data.name === undefined) {
@@ -318,7 +305,7 @@ let createHash = function (password) {
 	let hash = crypto.createHash('sha256');
 	hash.update(password);
 	return hash.digest('hex');
-}
+}//createHash
 
 
 app.listen(3000, () => console.log('listening on http://127.0.0.1:3000'));

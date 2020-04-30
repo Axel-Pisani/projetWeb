@@ -1,25 +1,28 @@
 {{>header}}
 
 <form action="/login" method="post">
-    <div class="container-fluid" id="fond2">
-      <div class="container" id="elContainer">
-        <div class="row">
-          <div id="inputColor">
-            <article class="cols-md-12"><br>
-              <h1 id="title"> Connectez-vous </h1><br>
-              <div class="form-group">
-                  <p>Identifiant : <input class="form-control" type="text" name="name" placeholder="Votre Nom" required></p>
-                  <p>Mot de passe : 
-                    <input class="form-control" type="password" name="password" required>
-                    <small id="passwordHelpInline" class="text-muted">
-                      Mot de passe entre 8 et 100 caractère.
-                    </small>
-                  </p>
-              </div>
-              <input class="btn btn-success" type="submit" value="Se Connecter">
-          </div>
-          </div>
-        </div>
-      </div>
+	<div class="container-fluid" id="fond2">
+	  	<div class="container" id="elContainer">
+			<div class="row">
+			  	<div id="inputColor">
+					<article class="cols-md-12"><br>
+				  		<h1 id="title"> Connectez-vous </h1><br>
+				  		<div class="form-group">
+							<p>Identifiant : 
+								<input class="form-control" type="text" name="name" placeholder="Votre Nom" required></p>
+							<p>Mot de passe : 
+								<input class="form-control" type="password" name="password" required>
+								<small id="passwordHelpInline" class="text-muted">
+							  		Mot de passe entre 8 et 100 caractère.
+								</small>
+					  		</p>
+				  		</div>
+				  		<input class="btn btn-success" type="submit" value="Se Connecter">
+			  		</article>
+	  			</div>
+	  		</div>
+		</div>
+	</div>
+</form>
 
 {{>footer}}
