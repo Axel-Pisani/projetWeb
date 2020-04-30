@@ -145,6 +145,10 @@ header .site-title{
     color: black;
 }
 
+.user-cog{
+    color: black;
+}
+
 .second-container{
     background-color: #e7e7e7;
 }
@@ -195,4 +199,45 @@ header .site-title{
     border: inset;
     border-width: 1px;
     border-color: coral;
+    transition: transform .2s; /* Animation */
+}
+
+#btn:hover{
+    background-color: rgb(255, 239, 233);
+    transform: scale(1.2);
+    box-shadow: 5px 5px rgba(59, 59, 59, 0.151);
+}
+
+#smallBtn{
+    margin-right: 10px;
+    border: inset;
+    border-width: 1px;
+    border-color: coral;
+    transition: transform .2s; /* Animation */
+}
+
+#smallBtn:hover{
+    color: coral;
+    background-color: black;
+    transform: scale(1.2);
+    box-shadow: 5px 5px rgba(59, 59, 59, 0.151);
+}
+
+#passwordHelpInline{
+    font-style: italic;
+    font-weight: bold;
+}
+
+#adminBtn{
+    margin-right: 10px;
+    border-style: dashed solid;
+    border-width: 2px;
+    border-color: rgb(255, 0, 0);
+    transition: transform .2s; /* Animation */
+}
+
+#adminBtn:hover{
+    background-color: rgb(255, 212, 212);
+    transform: scale(1.1);
+    box-shadow: 5px 5px rgba(59, 59, 59, 0.151);
 }

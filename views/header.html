@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		<div class="container-fluid p-0">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<nav class="navbar navbar-expand-lg navbar-light" id="elNavBar">
 				<a class="navbar-brand" href="/">Narguiland</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -35,43 +35,48 @@
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
 						<li class="nav-item active">
-							<a class="btn btn-light" href="/listNarg">Toute les Chichas <span class="sr-only">(current)</span></a>
+							<a class="btn btn-light" id="btn" href="/listNarg">Toute les Chichas <span class="sr-only">(current)</span></a>
 						</li>
 						{{#user}}
 							<li class="nav-item">
-								<a class="btn btn-light" href="/signout">Déconnexion</a>
-							</li>
-							<li class="nav-item">
-								<a class="btn btn-light" href="/userSettings">Compte</a>
+								<a class="btn btn-light" id="btn" href="/signout">Déconnexion</a>
 							</li>
 						{{/user}}
 						{{^user}}
 							<li class="nav-item">
-								<a class="btn btn-light" href="/signup">Inscription</a>
+								<a class="btn btn-light" id="btn" href="/signup">Inscription</a>
 							</li>
 							<li class="nav-item">
-								<a class="btn btn-light" href="/login">Connexion</a>
+								<a class="btn btn-light" id="btn" href="/login">Connexion</a>
 							</li>
 						{{/user}}
-						{{#admin}}
-							<li class="nav-item">
-								<a class="btn btn-light" href="/addNarg">Ajout nagruilé</a>
-							</li>
-							<li class="nav-item">
-								<a class="btn btn-light" href="/intermediaryNargManagment">Gestion narguilés</a>
-							</li>
-							<li class="nav-item">
-								<a class="btn btn-light" href="/intermediaryUserManagment">Gestion users</a>
-							</li>
-							<li class="nav-item">
-								<a class="btn btn-light" href="/intermediaryRentalManagment">Gestion locations</a>
-							</li>
-						{{/admin}}
+						
 					</ul>
 				</div>
 				<div class="navbar-nav">
+					{{#admin}}
+							<li class="nav-item">
+								<a class="btn btn-light"id="adminBtn" href="/addNarg">Ajout nagruilé</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-light" id="adminBtn" href="/intermediaryNargManagment">Gestion narguilés</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-light" id="adminBtn" href="/intermediaryUserManagment">Gestion users</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-light" id="adminBtn" href="/intermediaryRentalManagment">Gestion locations</a>
+							</li>
+					{{/admin}}
+					{{#authenticated}}
+						<a class="user-cog" type="button" href="/userSettings">
+							<li class="nav-item rounded-circle mx-2" id="smallBtn">
+								<i class="fas fa-user-cog p-2"></i>                      
+							</li>
+						</a>
+					{{/authenticated}}
 					<a class="shop-button" type="button" href="/cart">
-						<li class="nav-item border rounded-circle mx-2 bag-icon">
+						<li class="nav-item rounded-circle mx-2 bag-icon" id="smallBtn">
 							<i class="fas fa-shopping-bag p-2"></i>
 						</li>
 					</a>
