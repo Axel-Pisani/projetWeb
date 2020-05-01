@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 let isAdmin = function (req, res, next) {
 	if(req.session.admin != true) {
 		res.redirect('/');
-		return;
+		return next();
 	}
 	next();
 }//isAuthenticated
@@ -45,7 +45,7 @@ let isAdmin = function (req, res, next) {
 let isUser = function (req, res, next) {
 	if(req.session.user === undefined) {
 		res.redirect('/');
-		return;
+		return next();
 	}
 	next();
 }//isAuthenticated
@@ -53,7 +53,7 @@ let isUser = function (req, res, next) {
 let isRightUser = function (req, res, next) {
 	if(req.session.user != req.params.id) {
 		res.redirect('/login');
-		return;
+		return next();
 	}
 	next();
 
@@ -108,11 +108,12 @@ app.get('/login', (req, res) => {
 	res.render('login');
 });
 
+
+
 app.get('/userSettings', isUser, (req, res) => {
 	let user = db.readUser(req.session.user);
 	res.render('userSettings', user);
-});//managementUser
-
+});//userSettings
 
 app.get('/listNarg', (req, res) => {
 	let narg = db.getNarguile();
@@ -121,6 +122,10 @@ app.get('/listNarg', (req, res) => {
 
 app.get('/infoNarg/:id', (req, res) => {
 	let narg = db.searchNargile(req.params.id);
+	narg.manche = db.getManche();
+	narg.tuyau = db.getTuyau();
+	narg.tete = db.getTete();
+	narg.diffuseur = db.getDiffuseur();
 	res.render('info-narg', narg);
 });
 
@@ -139,13 +144,12 @@ app.get('/dbNargset/:id', isAdmin, (req, res) => {
 	res.render('dbManagment', {narg});
 });
 
-app.get('/userManagment', isAdmin, (req, res) => {
-	// let users = db.
-	res.render('dbManagment');
+app.get('/intermediaryUserManagment', isAdmin, (req, res) => {
+	let users = db.getUsers();
+	res.render('intermediaryManagment', {users});
 });
 
 app.get('/rentalManagment', isAdmin, (req, res) => {
-	// let  
 	res.render('dbManagment');
 });
 
