@@ -208,6 +208,21 @@ header .site-title{
     box-shadow: 5px 5px rgba(59, 59, 59, 0.151);
 }
 
+#btnCard{
+    margin-right: 10px;
+    border: inset;
+    border-width: 1px;
+    border-color: rgb(0, 0, 0);
+    background-color: lightgray;
+    transition: transform .2s; /* Animation */
+}
+
+#btnCard:hover{
+    background-color: rgb(0, 255, 0);
+    transform: scale(1.1);
+    box-shadow: 5px 5px rgba(59, 59, 59, 0.151);
+}
+
 #smallBtn{
     margin-right: 10px;
     border: inset;
