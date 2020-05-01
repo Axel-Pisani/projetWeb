@@ -1,49 +1,51 @@
 {{> header}}
-<div class="card-columns">
-	<div class="card p-3">
-		<img src="{{manchePhoto}}" class="card-img-top" alt="Le manche fini de se nettoyer il arrive ! ;-)">
-		<div class="card-body">
-			<h5 class="card-title">Manche</h5>
-			<p class="card-text">{{mancheDesc}}</p>
+<div class="container p-3" id="bloc">
+	<div class="card-columns">
+		<div class="card p-3 text-center">
+			<img src="{{manchePhoto}}" class="card-img-top" alt="Le manche fini de se nettoyer il arrive ! ;-)">
+			<div class="card-body">
+				<h5 class="card-title">Manche</h5>
+				<p class="card-text">{{mancheDesc}}</p>
+			</div>
 		</div>
-	</div>
- 	<div class="card p-3">
-		<img src="{{tuyauPhoto}}" class="card-img-top" alt="Le tuyau fini de se rincer il arrive ! ;-)">
-		<div class="card-body">
-			<h5 class="card-title">Tuyau</h5>
-			<p class="card-text">{{tuyauDesc}}</p>
+		<div class="card p-3 text-center">
+			<img src="{{tuyauPhoto}}" class="card-img-top" alt="Le tuyau fini de se rincer il arrive ! ;-)">
+			<div class="card-body">
+				<h5 class="card-title">Tuyau</h5>
+				<p class="card-text">{{tuyauDesc}}</p>
+			</div>
 		</div>
-	</div>
-  	<div class="card p-3">
-		<img src="" class="card-img-top" alt="La tête fini de faire chauffer les charbons ! ^^">
-		<div class="card-body text-center">
-			<h5 class="card-title">Tête</h5>
-			<p class="card-text">{{diffuseurDesc}}</p>
+		<div class="card p-3 text-center">
+			<img src="" class="card-img-top" alt="La tête fini de faire chauffer les charbons ! ^^">
+			<div class="card-body text-center">
+				<h5 class="card-title">Tête</h5>
+				<p class="card-text">{{diffuseurDesc}}</p>
+			</div>
 		</div>
-	</div>
-	<div class="card bg-primary text-white text-center p-3">
-		<img src="" class="card-img-top" alt="L'image arrive ^^">
-		<div class="card-body">
-			<h4>{{marque}}</h4>
-			<h5>{{reference}}</h5>
-			{{#user}}
-			<p>Quantité disponible : {{quantity}}</p>
-			{{/user}}
+		<div class="card bg-primary text-white text-center p-3">
+			<img src="" class="card-img-top" alt="L'image arrive ^^">
+			<div class="card-body">
+				<h4>{{marque}}</h4>
+				<h5>{{reference}}</h5>
+				{{#user}}
+				<p>Quantité disponible : {{quantity}}</p>
+				{{/user}}
+			</div>
 		</div>
-  	</div>
-	<div class="card p-3">
-		<img src="" class="card-img-top" alt="L'image fini ça chiche elle arrive vite !">
-		<div class="card-body text-right">
-			<h5 class="card-title">Diffuseur</h5>
-			<p class="card-text">{{diffuseurDesc}}</p>
+		<div class="card p-3 text-center">
+			<img src="" class="card-img-top" alt="L'image fini ça chiche elle arrive vite !">
+			<div class="card-body">
+				<h5 class="card-title">Diffuseur</h5>
+				<p class="card-text">{{diffuseurDesc}}</p>
+			</div>
 		</div>
-	</div>
-	<div class="card text-right">
-		<img src="" class="card-img-top" alt="Le goût se fait éfriter il arrive ^^">
-		<div class="card-body">
-			<h5 class="card-title">Goût</h5>
-			<p class="card-text">
-			</p>
+		<div class="card p-3 text-center">
+			<img src="" class="card-img-top" alt="Le goût se fait éfriter il arrive ^^">
+			<div class="card-body">
+				<h5 class="card-title">Goût</h5>
+				<p class="card-text">
+				</p>
+			</div>
 		</div>
 	</div>
 </div>

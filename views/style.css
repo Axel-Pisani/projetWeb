@@ -187,7 +187,7 @@ header .site-title{
 
 #elContainer{
     width: 1920px;
-    height: 720px;
+    height: 900px;
 }
 
 #elNavBar{
@@ -240,4 +240,26 @@ header .site-title{
     background-color: rgb(255, 212, 212);
     transform: scale(1.1);
     box-shadow: 5px 5px rgba(59, 59, 59, 0.151);
+}
+
+#banner{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#bannerContainer{
+    background-color: rgb(230, 230, 230);
+}
+
+#tabacIMG{
+    height: 300px;
+    width: 300px;
+}
+
+#bloc{
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }
