@@ -278,3 +278,39 @@ header .site-title{
     margin-left: auto;
     margin-right: auto;
 }
+
+#editBtn{
+    color: rgb(221, 221, 221);
+}
+
+#editBtn:hover{
+    -webkit-animation: spin 3s linear infinite;
+    -moz-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+    color: grey;
+}
+
+@-webkit-keyframes spin{
+    100%{-webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes spin{
+    100%{-webkit-transform: rotate(360deg);}
+}
+@keyframes spin{
+    100%{-webkit-transform: rotate(360deg);}
+}
+
+#cancelBtn{
+    color: rgb(255, 137, 137);
+}
+
+#cancelBtn:hover{
+    color: red;
+    transform: scale(1.2);
+}
+
+#nargPic{
+    height: 250px;
+    width: 200px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,30 @@
+{{>header}}
+
+<div class="container p-3" id="bloc">
+{{#rentals}}
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <img src="../model/assets/celesteBanner.png" class="card-img-top" id="nargPic">
+            <h5 class="card-title">(reference)</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">(tete)</li>
+            <li class="list-group-item">(manche)</li>
+            <li class="list-group-item">(tuyau)</li>
+            <li class="list-group-item">(diffuseur)</li>
+            <li class="list-group-item">(gout)</li>
+        </ul>
+        <div class="card-body">
+            <a class="rounded-circle fa-2x mx-4" id="editBtn" type="button" href="#">
+                <i class="fas fa-cog"></i>
+            </a>
+            <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" href="#">
+                <i class="fas fa-times-circle mx-10"></i></i>
+            </a>
+            <button class="btn" type="submit" id="btnCard">Valider</button>
+        </div>
+    </div>
+{{/rentals}}
+</div>
+
+{{>footer}}
