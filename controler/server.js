@@ -9,7 +9,7 @@ let cookieSession = require('cookie-session');
 
 
 /***********
-	MODEL    
+	MODEL
 ************/ 
 let db = require('../model/model');
 
@@ -24,8 +24,9 @@ app.engine('html', mustache());
 app.set('view engine', 'html');
 app.set('views', '../views');
 
+
 /************************
-		MIDDELWER    
+		MIDDELWER
 *************************/ 
 app.use('/views', express.static('../views'));
 app.use('/model', express.static('../model'));
@@ -87,6 +88,7 @@ app.use((req, res, next) => {
 	next();
 });
 
+
 /******************
 		GET
 ******************/
@@ -99,6 +101,20 @@ app.get('/signup', (req, res) => {
 	res.render('registerForm');
 });
 
+
+
+app.get('/test', (req, res) => {
+	let narg = db.searchNargile(1);
+	narg.manche = db.getManche();
+	narg.tuyau = db.getTuyau();
+	narg.tete = db.getTete();
+	narg.diffuseur = db.getDiffuseur();
+	res.render('test', narg);
+});
+
+
+
+
 app.get('/signout', (req, res) => {
 	req.session = null;
 	res.redirect('/');
@@ -108,12 +124,11 @@ app.get('/login', (req, res) => {
 	res.render('login');
 });
 
-
-
 app.get('/userSettings', isUser, (req, res) => {
 	let user = db.readUser(req.session.user);
 	res.render('userSettings', user);
-});//userSettings
+});
+
 
 app.get('/listNarg', (req, res) => {
 	let narg = db.getNarguile();
@@ -126,6 +141,7 @@ app.get('/infoNarg/:id', (req, res) => {
 	narg.tuyau = db.getTuyau();
 	narg.tete = db.getTete();
 	narg.diffuseur = db.getDiffuseur();
+	narg.gout = db.getGout();
 	res.render('info-narg', narg);
 });
 
@@ -157,11 +173,6 @@ app.get('/rentalManagment', isAdmin, (req, res) => {
 /*****************
 		POST
 ******************/
-//methode non implémenté
-app.post('/create', (req, res) => {
-	redirect('/');
-});
-
 app.post('/login', (req, res) => {
 	if (req.body.name == undefined || req.body.password == undefined) {
 		let messageError = {messageError: "identifiant ou mot de passe manquant"};
@@ -196,16 +207,14 @@ app.post('/signup', (req, res) => {
 
 //en cours d'implémentations
 app.post('/addNarg', isAdmin, (req, res) => {
- //    var form = new formidable.IncomingForm();
-	// if (!req.files || Object.keys(req.files).length === 0)
- //    	return res.status(400).send('No files were uploaded.');
-
- //  	let sampleFile = req.files.image;
- //  	sampleFile.mv('../model/assets/' + req.files.image.name, function(err) {
-	//     console.log(err)
-	//     if (err)
-	// 		return res.status(500).render(err);
- //  	});
+	let data = req.body;
+	checkNewNarg(data);
+	if (data.messageError == undefined) {
+		let newNarg = db.createNarg(data);
+		data.message = "nargrgilé enregistré!";
+		return res.redirect('/infoNarg/' + newNarg.lastInsertRowid);
+	}
+	res.render('addNarg', data);
 });
 
 
@@ -229,6 +238,69 @@ app.use((req, res, next) => {
 /*********************
 		METHOD
 **********************/
+
+/*
+	Method check narg
+*/
+let checkNewNarg = function (nargData) {
+	if (nargData == undefined) {
+		return nargData = {messageError: "aucune donnée spécifié"};
+	}
+	for (let nargKey in nargData) {
+		let nargValue = nargData[nargKey];
+
+		let regExPict = new RegExp('Pict');
+		if (regExPict.test(nargKey)) {
+			continue;
+		}
+
+		let regExQuantity = new RegExp('Quant');
+		if (regExQuantity.test(nargKey)) {
+			if (!checkQuantity(nargValue)) 
+				return nargData.messageError = 'la valeur : "' + nargValue + '" n\'est pas correcte';
+			continue;
+		}
+
+		let regExDesc = new RegExp('Desc');
+		if (regExDesc.test(nargKey)) {
+			if (!checkDesc(nargValue))
+				return nargData.messageError = 'la valeur : "' + nargValue + '" est incorrecte';
+			continue;
+		}
+
+		let regExMarqRef = new RegExp('marq|ref');
+		if (regExMarqRef.test(nargKey)) {
+			if (!checkMarqRef(nargValue))
+				return nargData.messageError = 'la valeur : "' + nargValue + '" est mauvaise ou trop longue';
+			continue;
+		}
+	}
+}
+
+let checkQuantity = function (quantity) {
+	let regExNumber = new RegExp('[0-9]');
+	if (quantity == undefined || !regExNumber.test(quantity))
+		return false;
+	return true;
+}
+
+let checkDesc = function (dataString) {
+	if (dataString == undefined || dataString.length > 200) 
+			return false;
+	return true;
+}
+
+let checkMarqRef = function (dataString) {
+	let regExNumber = new RegExp('[0-9]');
+	if (dataString == undefined || dataString.length > 100 || 
+		regExNumber.test(dataString)) 
+			return false;
+	return true;
+}
+
+/*
+	METHOD CHECK USER
+*/
 let usernameIsAvailable = function (data) {
 	data.name = data.name.trim();
 	if (data.name === undefined) {

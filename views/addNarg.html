@@ -1,33 +1,77 @@
 {{> header}}
 	<form action="/addNarg" method="post">
-	  	<div class="container-fluid bg-dark">
-			<div class="container">
-		  		<div class="row" id="inputColor">
-					<article class="cols-md-12"><br>
-			  			<h1> Ajouter une nouvelle Chicha </h1><br>
-			  			<div class="form-group">
-							<div class="form-row">
-				  				<div class="form-group col-md-6">
-									<label for="exampleFormControlSelect1">Marque :</label>
-									<input type="text" class="form-control" name="marque">
-				  				</div>
-							  	<div class="form-group col-md-6">
-								  	<label for="exampleFormControlSelect2">Modèle :</label>
-								  	<input type="text" class="form-control" name="model">
-								</div>
-							</div>
-							<label for="exampleFormControlSelect1">Description :</label>
-							<textarea class="form-control" name="description"></textarea>
-							<label for="exampleFormControlSelect1">Image :</label>
-							<input class="form-control" type="file" name="image" required>
-						</div>
-						<input class="form-control btn btn-warning" type="submit" value="Ajouter">
-						<div class="navbar-nav">
-							<a class="btn btn-danger" href="/">Annuler</a>
-						</div> 
-					</article>
-		  		</div>
+		{{#messageError}}
+			<div class="alert alert-danger" role="alert">
+				{{messageError}}
 			</div>
-	  	</div>
-	</form>
+		{{/messageError}}
+
+		{{#message}}
+			<div class="alert alert-success" role="alert">
+  				{{message}}
+			</div>
+		{{/message}}
+		<h5>Narguilé</h5>
+		<label>Quantité :
+			<input class="form-control" type="number" name="nargQuant" value="{{nargQuant}}" required>
+		</label>
+		<label>Marque :
+			<input class="form-control" type="text" name="marque" value="{{marque}}" required>
+		</label>
+		<label>Reference :
+			<input class="form-control" type="text" name="reference" value="{{reference}}" required>
+		</label>
+		<label>Photo :
+			<input class="form-control" type="file" name="nargPict" value="{{nargPict}}">
+		</label>
+	  
+		<h5>Manche</h5>
+		<label>Quantité : 
+			<input class="form-control" type="number" name="mancheQuant" value="{{mancheQuant}}" required>
+		</label>
+		<label>Description : 
+			<input class="form-control" type="text" name="mancheDesc" value="{{mancheDesc}}" required>
+		</label>
+		<label>Photo : 
+			<input class="form-control" type="file" name="manchePict" value="{{manchePict}}">
+		</label>
+	 
+		<h5>Tuyau</h5>
+		<label>Quantité : 
+			<input class="form-control" type="number" name="tuyauQuant" value="{{tuyauQuant}}" required>
+		</label>
+		<label>Description : 
+			<input class="form-control" type="text" name="tuyauDesc" value="{{tuyauDesc}}" required>
+		</label>
+		<label>Photo : 
+			<input class="form-control" type="file" name="tuyauPict" value="{{tuyauPict}}">
+		</label>
+
+		<h5>Tete</h5>
+		<label>Quantité : 
+			<input class="form-control" type="number" name="teteQuant" value="{{teteQuant}}" required>
+		</label>
+		<label>Description : 
+			<input class="form-control" type="text" name="teteDesc" value="{{teteDesc}}" required>
+		</label>
+		<label>Photo : 
+			<input class="form-control" type="file" name="tetePict" value="{{tetePict}}">
+		</label>
+  	
+		<h5>Diffuseur</h5>
+		<label>Quantité : 
+			<input class="form-control" type="number" name="diffuseurQuant" value="{{diffuseurQuant}}" required>
+		</label>
+		<label>Description : 
+			<input class="form-control" type="text" name="diffuseurDesc" value="{{diffuseurDesc}}" required>
+		</label>
+		<label>Photo : 
+			<input class="form-control" type="file" name="diffuseurPict" value="{{diffuseurPict}}">
+		</label>
+		<input type="submit" value="save"> 
+  	</form>
+
+
+
+
 {{> footer}}
