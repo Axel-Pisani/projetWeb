@@ -1,0 +1,511 @@
+{{>header}}
+<div class="container">
+  <div id="accordion">
+
+    <!-- LES TABACS -->
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+            aria-controls="collapseOne">
+            Tout les Tabacs
+          </button>
+        </h5>
+      </div>
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <ul class="cardElement">
+          <li>
+            <div class="card-body">
+
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop">
+                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <div class="card-body">
+                  <h5 class="card-title" id="color">Tabac</h5>
+                </div>
+              </div>
+
+              <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form action="/addTabac">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <label>Quantité :
+                          <input class="form-control" type="number" name="quantity" value="{{tabacQuant}}" required>
+                        </label>
+                        <label>Description :
+                          <input class="form-control" type="text" name="description" value="{{tabacDesc}}" required>
+                        </label>
+                        <label>Photo :
+                          <input class="form-control" type="file" name="picture" value="{{picture}}" required>
+                        </label>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          {{#gout}}
+          <li>
+            <div class="card-body">
+
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop">
+                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <div class="card-body">
+                  <h5 class="card-title" id="color">Tabac</h5>
+                </div>
+              </div>
+
+              <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form action="/addTabac">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <label>Quantité :
+                          <input class="form-control" type="number" name="quantity" value="{{quantity}}" required>
+                        </label>
+                        <label>Description :
+                          <input class="form-control" type="text" name="description" value="{{description}}" required>
+                        </label>
+                        <label>Photo :
+                          <input class="form-control" type="file" name="picture" value="{{picture}}" required>
+                        </label>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </li>
+          {{/gout}}
+
+      </div>
+    </div>
+
+    <!--LES DIFFUSEURS-->
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+            aria-controls="collapseTwo">
+            Tout les Diffuseurs
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <ul class="cardElement">
+          <li>
+            <div class="card-body">
+
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop2">
+                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <div class="card-body">
+                  <h5 class="card-title" id="color">Diffuseur</h5>
+                </div>
+              </div>
+
+              <div class="modal fade" id="staticBackdrop2" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form action="/addDiffuseur">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel2">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <label>Quantité :
+                          <input class="form-control" type="number" name="quantity" value="{{diffuseurQuant}}" required>
+                        </label>
+                        <label>Description :
+                          <input class="form-control" type="text" name="description" value="{{diffuseurDesc}}" required>
+                        </label>
+                        <label>Photo :
+                          <input class="form-control" type="file" name="picture" value="{{picture}}" required>
+                        </label>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          {{#diffuseur}}
+          <li>
+            <div class="card-body">
+
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop2">
+                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <div class="card-body">
+                  <h5 class="card-title" id="color">Diffuseur</h5>
+                </div>
+              </div>
+
+              <div class="modal fade" id="staticBackdrop2" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <form action="/addDiffuseur">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel2">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <label>Quantité :
+                          <input class="form-control" type="number" name="quantity" value="{{diffuseurQuant}}" required>
+                        </label>
+                        <label>Description :
+                          <input class="form-control" type="text" name="description" value="{{diffuseurDesc}}" required>
+                        </label>
+                        <label>Photo :
+                          <input class="form-control" type="file" name="picture" value="{{picture}}" required>
+                        </label>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </li>
+          {{/diffuseur}}
+
+      </div>
+    </div>
+
+    <!--LES MANCHES-->
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+            aria-expanded="false" aria-controls="collapseThree">
+            Tout les Manches
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+        <ul class="cardElement">
+          <li>
+            <div class="card-body">
+
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop3">
+                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <div class="card-body">
+                  <h5 class="card-title" id="color">Manche</h5>
+                </div>
+              </div>
+
+              <div class="modal fade" id="staticBackdrop3" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel3">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label>Quantité :
+                        <input class="form-control" type="number" name="quantity" value="{{mancheQuant}}" required>
+                      </label>
+                      <label>Description :
+                        <input class="form-control" type="text" name="description" value="{{mancheDesc}}" required>
+                      </label>
+                      <label>Photo :
+                        <input class="form-control" type="file" name="picture" value="{{photo}}" required>
+                      </label>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          {{#manche}}
+          <li>
+            <div class="card-body">
+
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop3">
+                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <div class="card-body">
+                  <h5 class="card-title" id="color">Manche</h5>
+                </div>
+              </div>
+
+              <div class="modal fade" id="staticBackdrop3" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel3">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label>Quantité :
+                        <input class="form-control" type="number" name="quantity" value="{{mancheQuant}}" required>
+                      </label>
+                      <label>Description :
+                        <input class="form-control" type="text" name="description" value="{{mancheDesc}}" required>
+                      </label>
+                      <label>Photo :
+                        <input class="form-control" type="file" name="picture" value="{{photo}}" required>
+                      </label>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          {{/manche}}
+        </ul>
+      </div>
+    </div>
+
+    <!--LES TUYAUX-->
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
+            aria-expanded="false" aria-controls="collapseFour">
+            Tout les Tuyaux
+          </button>
+        </h5>
+      </div>
+      <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+        <ul class="cardElement">
+          <li>
+            <div class="card-body">
+
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop4">
+                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <div class="card-body">
+                  <h5 class="card-title" id="color">Tuyau</h5>
+                </div>
+              </div>
+
+              <div class="modal fade" id="staticBackdrop4" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel4" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel4">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label>Quantité :
+                        <input class="form-control" type="number" name="quantity" value="{{tuyauQuant}}" required>
+                      </label>
+                      <label>Description :
+                        <input class="form-control" type="text" name="description" value="{{tuyauDesc}}" required>
+                      </label>
+                      <label>Photo :
+                        <input class="form-control" type="file" name="picture" value="{{photo}}" required>
+                      </label>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          {{#tuyau}}
+          <li>
+            <div class="card-body">
+
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop4">
+                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <div class="card-body">
+                  <h5 class="card-title" id="color">Tuyau</h5>
+                </div>
+              </div>
+
+              <div class="modal fade" id="staticBackdrop4" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel4" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel4">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label>Quantité :
+                        <input class="form-control" type="number" name="quantity" value="{{tuyauQuant}}" required>
+                      </label>
+                      <label>Description :
+                        <input class="form-control" type="text" name="description" value="{{tuyauDesc}}" required>
+                      </label>
+                      <label>Photo :
+                        <input class="form-control" type="file" name="picture" value="{{photo}}" required>
+                      </label>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          {{/tuyau}}
+
+      </div>
+    </div>
+
+    <!--LES TETES-->
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive"
+            aria-expanded="false" aria-controls="collapseFive">
+            Toute les Têtes
+          </button>
+        </h5>
+      </div>
+      <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+        <ul class="cardElement">
+          <li>
+            <div class="card-body">
+
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop5">
+                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <div class="card-body">
+                  <h5 class="card-title" id="color">Tête</h5>
+                </div>
+              </div>
+
+              <div class="modal fade" id="staticBackdrop5" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel5" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel5">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label>Quantité :
+                        <input class="form-control" type="number" name="quantity" value="{{teteQuant}}" required>
+                      </label>
+                      <label>Description :
+                        <input class="form-control" type="text" name="description" value="{{teteDesc}}" required>
+                      </label>
+                      <label>Photo :
+                        <input class="form-control" type="file" name="picture" value="{{picture}}" required>
+                      </label>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            
+            <div class="card-body">
+
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop5">
+                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <div class="card-body">
+                  <h5 class="card-title" id="color">Tête</h5>
+                </div>
+              </div>
+
+              <div class="modal fade" id="staticBackdrop5" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel5" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel5">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label>Quantité :
+                        <input class="form-control" type="number" name="quantity" value="{{teteQuant}}" required>
+                      </label>
+                      <label>Description :
+                        <input class="form-control" type="text" name="description" value="{{teteDesc}}" required>
+                      </label>
+                      <label>Photo :
+                        <input class="form-control" type="file" name="picture" value="{{picture}}" required>
+                      </label>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+{{>footer}}

@@ -332,6 +332,7 @@ header .site-title{
     transition: transform 0.5s;
     height: 150px;
     width: 150px;
+    margin-right: 0px;
 }
 
 #bigBtn:hover{
@@ -345,4 +346,13 @@ header .site-title{
 
 #cardTitle{
     padding-top: 20px;
+}
+
+ul.cardElement{
+    margin-bottom: 0rem;
+    padding-inline-start: 0rem;
+}
+
+ul.cardElement li{
+    display: inline-block;
 }
