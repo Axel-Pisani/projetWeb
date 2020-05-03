@@ -1,89 +1,109 @@
 {{> header}}
 <div class="container p-3">
+	
 	<div class="card-columns">
-		<div class="card p-3 text-center">
-			<img src="{{manchePhoto}}" class="card-img-top" alt="Le manche fini de se nettoyer il arrive ! ;-)">
-			<div class="card-body">
-				<h5 class="card-title">Manche</h5>
-				{{#user}}
-					<section>
-						{{#manche}}
-							<option>{{mancheDesc}}</option>
-						{{/manche}}
-					</section>
-				{{/user}}
-				<p class="card-text">{{mancheDesc}}</p>
+
+		<form id="formRental" action="/newRental" method="post">
+			
+			<div class="card p-3 text-center">
+				<img src="{{manchePhoto}}" class="card-img-top" alt="Le manche fini de se nettoyer il arrive ! ;-)">
+				<div class="card-body">
+					<h5 class="card-title">Manche</h5>
+					{{#user}}
+						<select form="formRental" name="idManche" class="form-control" id="exampleFormControlSelect1">
+					      	{{#manche}}
+								<option value="{{id}}">{{description}}</option>
+							{{/manche}}
+						</select>
+					{{/user}}
+					{{^user}}
+						<p class="card-text">{{mancheDesc}}</p>
+					{{/user}}
+				</div>
 			</div>
-		</div>
-		<div class="card p-3 text-center">
-			<img src="{{tuyauPhoto}}" class="card-img-top" alt="Le tuyau fini de se rincer il arrive ! ;-)">
-			<div class="card-body">
-				<h5 class="card-title">Tuyau</h5>
-				{{#user}}
-					<section>
-						{{#tuyau}}
-							<option>{{tuyauDesc}}</option>
-						{{/tuyau}}
-					</section>
-				{{/user}}
-				<p class="card-text">{{tuyauDesc}}</p>
+
+			<div class="card p-3 text-center">
+				<img src="{{tuyauPhoto}}" class="card-img-top" alt="Le tuyau fini de se rincer il arrive ! ;-)">
+				<div class="card-body">
+					<h5 class="card-title">Tuyau</h5>
+					{{#user}}
+						<select form="formRental" name="idTuyau" class="form-control" id="exampleFormControlSelect1">
+							{{#tuyau}}
+								<option value="{{id}}" >{{description}}</option>
+							{{/tuyau}}
+						</select>
+					{{/user}}
+					{{^user}}
+						<p class="card-text">{{tuyauDesc}}</p>
+					{{/user}}
+				</div>
 			</div>
-		</div>
-		<div class="card p-3 text-center">
-			<img src="" class="card-img-top" alt="La tête fini de faire chauffer les charbons ! ^^">
-			<div class="card-body text-center">
-				<h5 class="card-title">Tête</h5>
-				{{#user}}
-					<section>
-						{{#tete}}
-							<option>{{teteDesc}}</option>
-						{{/tete}}
-					</section>
-				{{/user}}
-				<p class="card-text">{{teteDesc}}</p>
+
+			<div class="card p-3 text-center">
+				<img src="{{tetePhoto}}" class="card-img-top" alt="La tête fini de faire chauffer les charbons ! ^^">
+				<div class="card-body text-center">
+					<h5 class="card-title">Tête</h5>
+					{{#user}}
+						<select form="formRental" name="idTete" class="form-control" id="exampleFormControlSelect1">
+							{{#tete}}
+								<option value="{{id}}" >{{description}}</option>
+							{{/tete}}
+						</select>
+					{{/user}}
+					{{^user}}
+						<p class="card-text">{{teteDesc}}</p>
+					{{/user}}
+				</div>
 			</div>
-		</div>
-		<div class="card bg-primary text-white text-center p-3">
-			<img src="" class="card-img-top" alt="L'image arrive ^^">
-			<div class="card-body">
-				<h4>{{marque}}</h4>
-				<h5>{{reference}}</h5>
-				{{#user}}
-				<p>Quantité disponible : {{quantity}}</p>
-				{{/user}}<br>
-				<button class="btn" type="submit" id="btnCard">Valider</button>
+
+			<div class="card bg-primary text-white text-center p-3">
+				<img src="{{photo}}" class="card-img-top" alt="L'image s'est perdu ^^">
+				<div class="card-body">
+					<h4>{{marque}}</h4>
+					<h5>{{reference}}</h5>
+					{{#user}}
+						<p>Quantité disponible : {{quantity}}</p>
+					{{/user}}<br>
+					<button class="btn" type="submit" id="btnCard">Valider</button>
+				</div>
 			</div>
-		</div>
-		<div class="card p-3 text-center">
-			<img src="" class="card-img-top" alt="L'image fini ça chiche elle arrive vite !">
-			<div class="card-body">
-				<h5 class="card-title">Diffuseur</h5>
-				{{#user}}
-					<section>
-						{{#diffuseur}}
-							<option>{{diffuseurDesc}}</option>
-						{{/diffuseur}}
-					</section>
-				{{/user}}
-				<p class="card-text">{{diffuseurDesc}}</p>
+
+			<div class="card p-3 text-center">
+				<img src="{{diffuseurPhoto}}" class="card-img-top" alt="L'image fini ça chiche elle arrive vite !">
+				<div class="card-body">
+					<h5 class="card-title">Diffuseur</h5>
+					{{#user}}
+						<select form="formRental" name="idDiffuseur" class="form-control" id="exampleFormControlSelect1">
+							{{#diffuseur}}
+								<option value="{{id}}" >{{description}}</option>
+							{{/diffuseur}}
+						</select>
+					{{/user}}
+					{{^user}}
+						<p class="card-text">{{diffuseurDesc}}</p>
+					{{/user}}
+				</div>
 			</div>
-		</div>
-		<div class="card p-3 text-center">
-			<img src="" class="card-img-top" alt="Le goût se fait éfriter il arrive ^^">
-			<div class="card-body">
-				<h5 class="card-title">Goût</h5>
-				{{#user}}
-					<section>
-						{{#gout}}
-							<option>{{goutDesc}}</option>
-						{{/gout}}
-					</section>
-				{{/user}}
-				<p class="card-text">
-				</p>
+
+			{{#user}}
+			<div class="card p-3 text-center">
+				<div class="card-body">
+					<h5 class="card-title">Goût</h5>
+						<select form="formRental" name="idGout" class="form-control" id="exampleFormControlSelect1">
+							{{#gout}}
+								<option value="{{id}}">{{description}}</option>
+							{{/gout}}
+						</select>
+					<p class="card-text">
+					</p>
+				</div>
 			</div>
-		</div>
+			{{/user}}
+
+		</form>
+
 	</div>
+
 </div>
 {{> footer}}
 

@@ -68,6 +68,14 @@ exports.searchUser = function (name, password) {
 // 	return query;
 // }
 
+
+// id, idUser, idNarg, idManche, idTuyau, idTete, idGout, 
+// idDiffuseur, startLoc, endLoc, isConfirmed
+// exports.newRental = function (newRental) {
+// 	let query = db.prepare('INSERT INTO location VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);')
+// 				   .run(null, data.mancheQuant, data.mancheDesc, data.manchePict);
+// }
+
 exports.createNarg = function (data) {
 	let manche = db.prepare('INSERT INTO manche VALUES (?,?,?,?);')
 				   .run(null, data.mancheQuant, data.mancheDesc, data.manchePict);
@@ -90,13 +98,20 @@ exports.createNarg = function (data) {
 exports.getNarguileManagement = function () {
 	let query = db.prepare('SELECT *, '+
 		 'te.quantity AS "teteQuant", ' +
+		 'te.photo AS "tetePhoto", ' +
 		 'te.description AS "teteDesc", ' +
-		 'm.description AS "mancheDesc", ' +
+		 
 		 'm.quantity AS "mancheQuant", ' +
-		 't.description AS "tuyauDesc", ' +
+		 'm.photo AS "manchePhoto", ' +
+		 'm.description AS "mancheDesc", ' +
+		 
 		 't.quantity AS "tuyauQuant", ' +
-		 'd.description AS "diffuseurDesc", ' +
+		 't.photo AS "tuyauPhoto", ' +
+		 't.description AS "tuyauDesc", ' +
+		 
 		 'd.quantity AS "diffuseurQuant" ' +
+		 'd.photo AS "diffuseurPhoto" ' +
+		 'd.description AS "diffuseurDesc", ' +
 		'FROM narguile n ' +
 		 'JOIN manche m ON n.idManche = m.id ' +
 		 'JOIN tuyau t ON n.idTuyau = t.id ' +
@@ -111,6 +126,7 @@ exports.getNarguileManagement = function () {
 
 exports.getNarguile = function () {
 	let narguile = db.prepare('SELECT * FROM narguile;').all();
+	quantityIsRight(narguile);
 	return narguile;
 }//getNarguile
 
@@ -123,51 +139,68 @@ exports.searchNargile = function (id) {
 	let narguile = db.prepare('SELECT *, '+
 		 'te.quantity AS "teteQuant", ' +
 		 'te.description AS "teteDesc", ' +
-		 'm.description AS "mancheDesc", ' +
+		 'te.photo AS "tetePhoto", ' +
+		 
 		 'm.quantity AS "mancheQuant", ' +
-		 't.description AS "tuyauDesc", ' +
+		 'm.description AS "mancheDesc", ' +
+		 'm.photo AS "manchePhoto", ' +
+		 
 		 't.quantity AS "tuyauQuant", ' +
+		 't.description AS "tuyauDesc", ' +
+		 't.photo AS "tuyauPhoto", ' +
+		 
+		 'd.quantity AS "diffuseurQuant", ' +
 		 'd.description AS "diffuseurDesc", ' +
-		 'd.quantity AS "diffuseurQuant" ' +
+		 'd.photo AS "diffuseurPhoto" ' +
 		'FROM narguile n ' +
 		 'JOIN manche m ON n.idManche = m.id ' +
 		 'JOIN tuyau t ON n.idTuyau = t.id ' +
 		 'JOIN diffuseur d ON n.idDiffuseur = d.id ' +
-		 'JOIN tete te ON n.idTete = te.id ' +
-		'WHERE n.id = ?').get(id);
+		 'JOIN tete te ON n.idTete = te.id ' + 
+		'WHERE n.id = ? ;').get(id);
 	return narguile;
 }
 
 
 exports.getGout = function () {
 	let query = db.prepare('SELECT * FROM gout;').all();
+	quantityIsRight(query);
 	return query;
 }//getTuyau
 
 
 exports.getTuyau = function () {
 	let query = db.prepare('SELECT * FROM tuyau;').all();
+	quantityIsRight(query);
 	return query;
 }//getTuyau
 
 exports.getManche = function () {
 	let query = db.prepare('SELECT * FROM manche;').all();
+	quantityIsRight(query);
 	return query;
 }//getTuyau
 
 exports.getTete = function () {
 	let query = db.prepare('SELECT * FROM tete;').all();
+	quantityIsRight(query);
 	return query;
 }//getTuyau
 
 exports.getDiffuseur = function () {
 	let query = db.prepare('SELECT * FROM diffuseur;').all();
+	quantityIsRight(query);
 	return query;
 }//getDiffuseur
-
 
 exports.getUsernameOfUser = function (username) {
 	let query = db.prepare('SELECT * FROM users WHERE name = ?;').all(username);
 	return query;
 }
 
+let quantityIsRight = function (data) {
+	for (var i = 0; i < data.length; i++) {
+		if (data[i].quantity == 0) 
+			data.splice(i, 1);
+	}
+}

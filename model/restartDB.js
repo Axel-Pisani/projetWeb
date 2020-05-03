@@ -1,5 +1,5 @@
+let crypto = require('crypto');
 let sqlite = require('better-sqlite3');
-
 let db = new sqlite('../model/db.narguile');
 
 function reset () {
@@ -60,7 +60,7 @@ function reset () {
 		' idTuyau INTEGER NOT NULL REFERENCES tuyau, ' +
 		' idTete INTEGER NOT NULL REFERENCES tete, ' +
 		' idDiffuseur INTEGER NOT NULL REFERENCES diffuseur, ' +
-		' photo VARCHAR2(150) NOT NULL);').run();
+		' photo VARCHAR2(150));').run();
 
 	query = db.prepare('CREATE TABLE location (' +
 		' id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
@@ -71,44 +71,62 @@ function reset () {
 		' idTete INTEGER NOT NULL REFERENCES tete, ' +
 		' idGout INTEGER DEFAULT NULL REFERENCES gout, ' +
 		' idDiffuseur INTEGER NOT NULL REFERENCES diffuseur, ' +
-		' startLoc TIMESTAMP NOT NULL, ' +
-		' timingLoc TIMESTAMP NOT NULL);').run();
+		' startLoc DATE NOT NULL, ' +
+		' endLoc DATE NOT NULL, ' +
+		' isConfirmed INTEGER NOT NULL CHECK(isConfirmed >= 0 AND isConfirmed <= 1) DEFAULT 0) ;').run();
 }//reset()
 
-function restart () {
-	let query = db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?)')
-				  .run(null, 'axel', 'axel1998', '1998-04-02', '16 allees des pouilleux', '0762042543', 'admin');
+let createHash = function (password) {
+	let hash = crypto.createHash('sha256');
+	hash.update(password);
+	return hash.digest('hex');
+}//createHash
 
+function restart () {
+	let password = "axel1998";
+	let query = db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?)')
+				  .run(null, 'axel', createHash(password), '1998-04-02', '16 allees des pouilleux', '0762042543', 'admin');
+
+  	password = 'mohammed';
 	query = db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?)')
-				  .run(null, 'mohammed', 'mohammed', '1998-04-02', 'chez lui', '0762042543', 'admin');
+				  .run(null, 'mohammed', createHash(password), '1998-04-02', 'chez lui', '0762042543', 'admin');
 
 	query = db.prepare('INSERT INTO manche VALUES (?,?,?,?)')
-				  .run(null, 2, 'aluminium fin avec joint d\'étanchéité', 'photo');
+				  .run(null, 2, 'Aluminium fin avec joint d\'étanchéité', null);
 
 	query = db.prepare('INSERT INTO tuyau VALUES (?,?,?,?)')
-				  .run(null, 2, 'tuyau en silicone flexible', 'photo');
+				  .run(null, 2, 'Tuyau en silicone flexible', null);
 
 	query = db.prepare('INSERT INTO tete VALUES (?,?,?,?)')
-				  .run(null, 1, 'tête en céramique large', 'photo');
+				  .run(null, 1, 'Tête en céramique large', null);
 
 	query = db.prepare('INSERT INTO tete VALUES (?,?,?,?)')
-				  .run(null, 1, 'tête en silicone avec adaptateur', 'photo');
+				  .run(null, 1, 'Tête en silicone avec adaptateur', null);
 
 	query = db.prepare('INSERT INTO gout VALUES (?,?,?,?)')
-				  .run(null, 1, 'goût aldalya fraise framboise', 'photo');
+				  .run(null, 1, 'Aldalya Cola Dragon', '/assets/tasteDragon.png');
+
+	query = db.prepare('INSERT INTO gout VALUES (?,?,?,?)')
+				  .run(null, 1, 'Aldalya Hawaii', '/assets/tasteHawaii.png');
+
+	query = db.prepare('INSERT INTO gout VALUES (?,?,?,?)')
+				  .run(null, 1, 'Aldalya Cactus', '/assets/tasteCactus.png');
 
 	query = db.prepare('INSERT INTO diffuseur VALUES (?,?,?,?)')
-				  .run(null, 1, 'diffuseur en aluminium', 'photo');
+				  .run(null, 1, 'Diffuseur en aluminium', null);
 
 	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
-				  .run(null, 1, 'El-Badia', 'Celeste X3', 1, 1, 1, 1, 'photo');
+				  .run(null, 1, 'El-Badia', 'Celeste X3', 1, 1, 1, 1, '/assets/celesteJunior2-0Violette.jpg');
 
 	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
-				  .run(null, 1, 'ODUMAN', 'N5-Z JUNIOR', 1, 1, 2, 1, 'photo');
+				  .run(null, 1, 'ODUMAN', 'N5-Z JUNIOR', 1, 1, 2, 1, null);
 	
 	let date = Math.round(new Date().getTime()/1000);
-	query = db.prepare('INSERT INTO location VALUES (?,?,?,?,?,?,?,?,?,?)')
-				  .run(null, 1, 1, 1, 1, 1, 1, 1, date, date + 3600);
+	// id ,idUser, idNarg, idManche, idTuyau, idTete, idGout, 
+	// idDiffuseur, startLoc, endLoc, isConfirmed
+	query = db.prepare('INSERT INTO location VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+				  .run(null, 1, 1, 1, 1, 1, 1, 1, date, date + 3600, 0);
+
 
 	query = db.prepare('SELECT * FROM users').all();
 	console.log('users : ');
@@ -126,7 +144,7 @@ function restart () {
 	console.log('\n');
 
 	query = db.prepare('SELECT * FROM tete').all();
-	console.log('tet : ');
+	console.log('tete : ');
 	console.log(query);
 	console.log('\n');
 

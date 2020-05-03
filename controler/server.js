@@ -46,7 +46,7 @@ let isAdmin = function (req, res, next) {
 let isUser = function (req, res, next) {
 	if(req.session.user === undefined) {
 		res.redirect('/');
-		return next();
+		return;
 	}
 	next();
 }//isAuthenticated
@@ -54,7 +54,7 @@ let isUser = function (req, res, next) {
 let isRightUser = function (req, res, next) {
 	if(req.session.user != req.params.id) {
 		res.redirect('/login');
-		return next();
+		return;
 	}
 	next();
 
@@ -104,12 +104,8 @@ app.get('/signup', (req, res) => {
 
 
 app.get('/test', (req, res) => {
-	let narg = db.searchNargile(1);
-	narg.manche = db.getManche();
-	narg.tuyau = db.getTuyau();
-	narg.tete = db.getTete();
-	narg.diffuseur = db.getDiffuseur();
-	res.render('test', narg);
+
+	res.render('test');
 });
 
 
@@ -137,6 +133,7 @@ app.get('/listNarg', (req, res) => {
 
 app.get('/infoNarg/:id', (req, res) => {
 	let narg = db.searchNargile(req.params.id);
+	console.log(narg)
 	narg.manche = db.getManche();
 	narg.tuyau = db.getTuyau();
 	narg.tete = db.getTete();
@@ -155,15 +152,17 @@ app.get('/intermediaryNargManagment', isAdmin, (req, res) => {
 	res.render('intermediaryManagment', {nargs});
 });
 
-app.get('/dbNargset/:id', isAdmin, (req, res) => {
-	let narg = db.searchNargile(req.params.id);
-	res.render('dbManagment', {narg});
-});
-
 app.get('/intermediaryUserManagment', isAdmin, (req, res) => {
 	let users = db.getUsers();
 	res.render('intermediaryManagment', {users});
 });
+
+
+app.get('/dbNargset/:id', isAdmin, (req, res) => {
+	let narg = db.searchNargile(req.params.id); 
+	res.render('dbManagment', {narg});
+});
+
 
 app.get('/rentalManagment', isAdmin, (req, res) => {
 	res.render('dbManagment');
@@ -205,7 +204,7 @@ app.post('/signup', (req, res) => {
 	res.redirect('/');
 });
 
-//en cours d'implémentations
+//Ok
 app.post('/addNarg', isAdmin, (req, res) => {
 	let data = req.body;
 	checkNewNarg(data);
@@ -215,6 +214,12 @@ app.post('/addNarg', isAdmin, (req, res) => {
 		return res.redirect('/infoNarg/' + newNarg.lastInsertRowid);
 	}
 	res.render('addNarg', data);
+});
+
+
+app.post('/newRental', isUser, (req, res) => {
+	console.log(req.body);
+	res.redirect('/');
 });
 
 
