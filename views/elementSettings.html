@@ -18,9 +18,9 @@
             <div class="card-body">
 
               <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop">
-                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <i class="far fa-plus-square fa-5x" id="cardIcon"></i>
                 <div class="card-body">
-                  <h5 class="card-title" id="color">Tabac</h5>
+                  <h5 class="card-title" id="color">Ajouter</h5>
                 </div>
               </div>
 
@@ -30,7 +30,7 @@
                   <form action="/addTabac">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Formulaire pour les Tabacs</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -47,8 +47,12 @@
                         </label>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
+                        <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" data-dismiss="modal">
+                          <i class="fas fa-times-circle"></i>
+                        </a>
+                        <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button" href="#">
+                          <i class="fas fa-check-circle"></i>
+                        </a>
                       </div>
                     </div>
                   </form>
@@ -61,20 +65,20 @@
           <li>
             <div class="card-body">
 
-              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop">
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#tabac{{id}}">
                 <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
                 <div class="card-body">
                   <h5 class="card-title" id="color">Tabac</h5>
                 </div>
               </div>
 
-              <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal fade" id="tabac{{id}}" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="tabac{{id}}Label" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <form action="/addTabac">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <h5 class="modal-title" id="tabac{{id}}Label">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -91,8 +95,12 @@
                         </label>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
+                        <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" data-dismiss="modal">
+                          <i class="fas fa-times-circle"></i>
+                        </a>
+                        <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button" href="#">
+                          <i class="fas fa-check-circle"></i>
+                        </a>
                       </div>
                     </div>
                   </form>
@@ -121,9 +129,9 @@
             <div class="card-body">
 
               <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop2">
-                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <i class="far fa-plus-square fa-5x" id="cardIcon"></i>
                 <div class="card-body">
-                  <h5 class="card-title" id="color">Diffuseur</h5>
+                  <h5 class="card-title" id="color">Ajouter</h5>
                 </div>
               </div>
 
@@ -133,7 +141,7 @@
                   <form action="/addDiffuseur">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel2">Modal title</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel2">Formulaire pour les Diffuseurs</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -150,8 +158,12 @@
                         </label>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
+                        <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" data-dismiss="modal">
+                          <i class="fas fa-times-circle"></i>
+                        </a>
+                        <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button" href="#">
+                          <i class="fas fa-check-circle"></i>
+                        </a>
                       </div>
                     </div>
                   </form>
@@ -164,20 +176,20 @@
           <li>
             <div class="card-body">
 
-              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop2">
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#diffuseur{{id}}">
                 <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
                 <div class="card-body">
                   <h5 class="card-title" id="color">Diffuseur</h5>
                 </div>
               </div>
 
-              <div class="modal fade" id="staticBackdrop2" data-backdrop="static" tabindex="-1" role="dialog"
-                aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+              <div class="modal fade" id="diffuseur{{id}}" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="diffuseur{{id}}Label" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <form action="/addDiffuseur">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel2">Modal title</h5>
+                        <h5 class="modal-title" id="diffuseur{{id}}Label">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -194,8 +206,12 @@
                         </label>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
+                        <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" data-dismiss="modal">
+                          <i class="fas fa-times-circle"></i>
+                        </a>
+                        <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button" href="#">
+                          <i class="fas fa-check-circle"></i>
+                        </a>
                       </div>
                     </div>
                   </form>
@@ -225,9 +241,9 @@
             <div class="card-body">
 
               <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop3">
-                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <i class="far fa-plus-square fa-5x" id="cardIcon"></i>
                 <div class="card-body">
-                  <h5 class="card-title" id="color">Manche</h5>
+                  <h5 class="card-title" id="color">Ajouter</h5>
                 </div>
               </div>
 
@@ -236,7 +252,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel3">Modal title</h5>
+                      <h5 class="modal-title" id="staticBackdropLabel3">Formulaire pour les Manches</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -253,8 +269,12 @@
                       </label>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Understood</button>
+                      <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" data-dismiss="modal">
+                        <i class="fas fa-times-circle"></i>
+                      </a>
+                      <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button" href="#">
+                        <i class="fas fa-check-circle"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -266,19 +286,19 @@
           <li>
             <div class="card-body">
 
-              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop3">
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#manche{{id}}">
                 <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
                 <div class="card-body">
                   <h5 class="card-title" id="color">Manche</h5>
                 </div>
               </div>
 
-              <div class="modal fade" id="staticBackdrop3" data-backdrop="static" tabindex="-1" role="dialog"
-                aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+              <div class="modal fade" id="manche{{id}}" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="manche{{id}}Label" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel3">Modal title</h5>
+                      <h5 class="modal-title" id="manche{{id}}Label">Modal title</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -295,8 +315,12 @@
                       </label>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Understood</button>
+                      <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" data-dismiss="modal">
+                        <i class="fas fa-times-circle"></i>
+                      </a>
+                      <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button" href="#">
+                        <i class="fas fa-check-circle"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -324,9 +348,9 @@
             <div class="card-body">
 
               <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop4">
-                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <i class="far fa-plus-square fa-5x" id="cardIcon"></i>
                 <div class="card-body">
-                  <h5 class="card-title" id="color">Tuyau</h5>
+                  <h5 class="card-title" id="color">Ajouter</h5>
                 </div>
               </div>
 
@@ -335,7 +359,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel4">Modal title</h5>
+                      <h5 class="modal-title" id="staticBackdropLabel4">Formulaire pour les Tuyaux</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -352,8 +376,12 @@
                       </label>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Understood</button>
+                      <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" data-dismiss="modal">
+                        <i class="fas fa-times-circle"></i>
+                      </a>
+                      <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button" href="#">
+                        <i class="fas fa-check-circle"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -365,19 +393,19 @@
           <li>
             <div class="card-body">
 
-              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop4">
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#tuyau{{id}}">
                 <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
                 <div class="card-body">
                   <h5 class="card-title" id="color">Tuyau</h5>
                 </div>
               </div>
 
-              <div class="modal fade" id="staticBackdrop4" data-backdrop="static" tabindex="-1" role="dialog"
-                aria-labelledby="staticBackdropLabel4" aria-hidden="true">
+              <div class="modal fade" id="tuyau{{id}}" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="tuyau{{id}}Label" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel4">Modal title</h5>
+                      <h5 class="modal-title" id="tuyau{{id}}Label">Modal title</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -394,8 +422,12 @@
                       </label>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Understood</button>
+                      <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" data-dismiss="modal">
+                        <i class="fas fa-times-circle"></i>
+                      </a>
+                      <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button" href="#">
+                        <i class="fas fa-check-circle"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -423,9 +455,9 @@
             <div class="card-body">
 
               <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop5">
-                <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
+                <i class="far fa-plus-square fa-5x" id="cardIcon"></i>
                 <div class="card-body">
-                  <h5 class="card-title" id="color">Tête</h5>
+                  <h5 class="card-title" id="color">Ajouter</h5>
                 </div>
               </div>
 
@@ -434,7 +466,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel5">Modal title</h5>
+                      <h5 class="modal-title" id="staticBackdropLabel5">Formulaire pour les Têtes</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -451,8 +483,12 @@
                       </label>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Understood</button>
+                      <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" data-dismiss="modal">
+                        <i class="fas fa-times-circle"></i>
+                      </a>
+                      <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button" href="#">
+                        <i class="fas fa-check-circle"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -460,23 +496,23 @@
             </div>
           </li>
 
+          {{#tete}}
           <li>
-            
             <div class="card-body">
 
-              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#staticBackdrop5">
+              <div class="card text-center" id="bigBtn" data-toggle="modal" data-target="#tete{{id}}">
                 <img src="assets/celesteBanner.png" id="elementPic" class="card-img" alt="manqué">
                 <div class="card-body">
                   <h5 class="card-title" id="color">Tête</h5>
                 </div>
               </div>
 
-              <div class="modal fade" id="staticBackdrop5" data-backdrop="static" tabindex="-1" role="dialog"
-                aria-labelledby="staticBackdropLabel5" aria-hidden="true">
+              <div class="modal fade" id="tete{{id}}" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="tete{{id}}Label" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel5">Modal title</h5>
+                      <h5 class="modal-title" id="tete{{id}}Label">Editer</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -493,15 +529,19 @@
                       </label>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Understood</button>
+                      <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" data-dismiss="modal">
+                        <i class="fas fa-times-circle"></i>
+                      </a>
+                      <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button" href="#">
+                        <i class="fas fa-check-circle"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </li>
+          {{/tete}}
         </ul>
 
       </div>

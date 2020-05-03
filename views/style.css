@@ -302,10 +302,21 @@ header .site-title{
 
 #cancelBtn{
     color: rgb(255, 137, 137);
+    transition: transform 0.5s;
 }
 
 #cancelBtn:hover{
     color: red;
+    transform: scale(1.2);
+}
+
+#checkBtn{
+    color: rgb(119, 202, 111);
+    transition: transform 0.5s;
+}
+
+#checkBtn:hover{
+    color: rgb(0, 168, 0);
     transform: scale(1.2);
 }
 
@@ -355,4 +366,9 @@ ul.cardElement{
 
 ul.cardElement li{
     display: inline-block;
+}
+
+#cardIcon{
+    margin-top: 10px;
+    color: grey;
 }
