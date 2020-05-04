@@ -40,6 +40,9 @@
 							<li class="nav-item">
 								<a class="btn btn-light" id="btn" href="/signout">Déconnexion</a>
 							</li>
+							<li class="nav-item">
+								<a class="btn btn-light" id="btn" href="/userSettings"><i class="fas fa-user-cog p-1"></i></a>
+							</li>
 						{{/user}}
 						{{^user}}
 							<li class="nav-item">
@@ -49,11 +52,6 @@
 								<a class="btn btn-light" id="btn" href="/login">Connexion</a>
 							</li>
 						{{/user}}
-						{{#authenticated}}
-						<li class="nav-item">
-							<a class="btn btn-light" id="btn" href="/userSettings"><i class="fas fa-user-cog p-1"></i></a>
-						</li>
-						{{/authenticated}}
 						{{#admin}}
 							<li class="nav-item">
 								<a class="btn btn-light" id="adminBtn" href="/addNarg">Ajout nagruilé</a>
@@ -70,13 +68,15 @@
 						{{/admin}}
 					</ul>
 				</div>
-				<div class="navbar-nav">
-					<a class="shop-button rounded-circle mx-2" type="button" href="/shoppingcart">
-						<li class="nav-item rounded-circle mx-2 bag-icon" id="smallBtn">
-							<i class="fas fa-shopping-bag p-2"></i>
-						</li>
-					</a>
-				</div>
+				{{#user}}
+					<div class="navbar-nav">
+						<a class="shop-button rounded-circle mx-2" type="button" href="/shoppingcart/{{user}}">
+							<li class="nav-item rounded-circle mx-2 bag-icon" id="smallBtn">
+								<i class="fas fa-shopping-bag p-2"></i>
+							</li>
+						</a>
+					</div>
+				{{/user}}
 		  	</nav>
 		</div>
 	</header>
