@@ -149,7 +149,7 @@ exports.updateNarg = function (nargData) {
 	return query;
 }
 
-exports.updateElement = function (tuyauData) {
+exports.updateTuyau = function (tuyauData) {
 	let query = db.prepare('UPDATE FROM tuyau SET quantity = ? AND description = ? WHERE id = ?;')
 				  .run(tuyauData.quantity, tuyauData.description, tuyauData.id);
 	return query;
@@ -171,9 +171,11 @@ exports.updateDiffuseur = function (diffuseurData) {
 }
 
 
-exports.searchNargile = function (id) {
+exports.searchNargWithAllElement = function (id) {
 	let narguile = db.prepare('SELECT *, '+
-		 'te.quantity AS "teteQuant", ' +
+		 'n.photo AS "nargPicture",' +
+		 
+		 'te.quantity AS "teteQuant",' +
 		 'te.description AS "teteDesc", ' +
 		 'te.photo AS "tetePhoto", ' +
 		 
@@ -229,6 +231,43 @@ exports.getDiffuseur = function () {
 	return query;
 }//getDiffuseur
 
+
+
+
+exports.searchGout = function (id) {
+	let query = db.prepare('SELECT * FROM gout WHERE id = ?;').get(id);
+	return query;
+}//searchTuyau
+
+exports.searchNarg = function (id) {
+	let query = db.prepare('SELECT * FROM narguile WHERE id = ?;').get(id);
+	return query;
+}//searchTuyau
+
+exports.searchTuyau = function (id) {
+	let query = db.prepare('SELECT * FROM tuyau WHERE id = ?;').get(id);
+	return query;
+}//searchTuyau
+
+exports.searchManche = function (id) {
+	let query = db.prepare('SELECT * FROM manche WHERE id = ?;').get(id);
+	return query;
+}//searchTuyau
+
+exports.searchTete = function (id) {
+	let query = db.prepare('SELECT * FROM tete WHERE id = ?;').get(id);
+	return query;
+}//searchTuyau
+
+exports.searchDiffuseur = function (id) {
+	let query = db.prepare('SELECT * FROM diffuseur WHERE id = ?;').get(id);
+	return query;
+}//searchDiffuseur
+
+
+
+
+
 exports.getUsernameOfUser = function (username) {
 	let query = db.prepare('SELECT * FROM users WHERE name = ?;').all(username);
 	return query;
@@ -236,6 +275,15 @@ exports.getUsernameOfUser = function (username) {
 
 let quantityIsRight = function (data) {
 	for (var i = 0; i < data.length; i++) {
+		if (data[i].quantity == 0) 
+			data.splice(i, 1);
+	}
+}
+
+
+let elementIsAvailable = function (data) {
+	for (var i = 0; i < data.length; i++) {
+
 		if (data[i].quantity == 0) 
 			data.splice(i, 1);
 	}
