@@ -4,18 +4,18 @@
     {{#rentals}}
     <div class="card text-center" style="width: 18rem;">
         <div class="card-body">
-            <img src="../model/assets/celesteBanner.png" class="card-img-top" id="nargPic">
+            <img src="{{idNarg.photo}}" class="card-img-top" id="nargPic">
             <h5 class="card-title">(reference)</h5>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">(tete)</li>
-            <li class="list-group-item">(manche)</li>
-            <li class="list-group-item">(tuyau)</li>
-            <li class="list-group-item">(diffuseur)</li>
-            <li class="list-group-item">(gout)</li>
+            <li class="list-group-item">{{idTete.description}}</li>
+            <li class="list-group-item">{{idTuyau.description}}</li>
+            <li class="list-group-item">{{idManche.description}}</li>
+            <li class="list-group-item">{{idDiffuseur.description}}</li>
+            <li class="list-group-item">{{idGout.description}}</li>
         </ul>
         <div class="card-body">
-            <a class="rounded-circle fa-2x mx-4" id="editBtn" data-toggle="modal" data-target="#staticBackdrop4">
+            <a class="rounded-circle fa-2x mx-4" id="editBtn" data-toggle="modal" data-target="#{{idNarg.marque}}{{id}}">
                 <i class="fas fa-cog"></i>
             </a>
             <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" href="#">
@@ -24,8 +24,7 @@
             <button class="btn" type="submit" id="btnCard">Valider</button>
         </div>
 
-        <div class="modal fade" id="staticBackdrop4" data-backdrop="static" tabindex="-1" role="dialog"
-            aria-labelledby="staticBackdropLabel4" aria-hidden="true">
+        <div class="modal fade" id="{{idNarg.marque}}{{id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel4" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -35,91 +34,70 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="formRental" action="/newRental" method="post">
-
+                        <form id="formRental" action="/updateRental/{{id}}" method="post">
                             <div class="card p-3 text-center">
                                 <div class="card-body">
                                     <h5 class="card-title">Manche</h5>
-                                    {{#user}}
                                     <select form="formRental" name="idManche" class="form-control"
                                         id="exampleFormControlSelect1">
-                                        {{#manche}}
+                                        {{#mancheList}}
                                         <option value="{{id}}">{{description}}</option>
-                                        {{/manche}}
+                                        {{/mancheList}}
                                     </select>
-                                    {{/user}}
-                                    {{^user}}
-                                    <p class="card-text">{{mancheDesc}}</p>
-                                    {{/user}}
                                 </div>
                             </div>
 
                             <div class="card p-3 text-center">
                                 <div class="card-body">
                                     <h5 class="card-title">Tuyau</h5>
-                                    {{#user}}
                                     <select form="formRental" name="idTuyau" class="form-control"
                                         id="exampleFormControlSelect1">
-                                        {{#tuyau}}
+                                        {{#tuyauList}}
                                         <option value="{{id}}">{{description}}</option>
-                                        {{/tuyau}}
+                                        {{/tuyauList}}
                                     </select>
-                                    {{/user}}
-                                    {{^user}}
-                                    <p class="card-text">{{tuyauDesc}}</p>
-                                    {{/user}}
                                 </div>
                             </div>
 
                             <div class="card p-3 text-center">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Tête</h5>
-                                    {{#user}}
                                     <select form="formRental" name="idTete" class="form-control"
                                         id="exampleFormControlSelect1">
-                                        {{#tete}}
+                                        {{#teteList}}
                                         <option value="{{id}}">{{description}}</option>
-                                        {{/tete}}
+                                        {{/teteList}}
                                     </select>
-                                    {{/user}}
-                                    {{^user}}
                                     <p class="card-text">{{teteDesc}}</p>
-                                    {{/user}}
                                 </div>
                             </div>
 
                             <div class="card p-3 text-center">
                                 <div class="card-body">
                                     <h5 class="card-title">Diffuseur</h5>
-                                    {{#user}}
                                     <select form="formRental" name="idDiffuseur" class="form-control"
                                         id="exampleFormControlSelect1">
-                                        {{#diffuseur}}
+                                        {{#diffuseurList}}
                                         <option value="{{id}}">{{description}}</option>
-                                        {{/diffuseur}}
+                                        {{/diffuseurList}}
                                     </select>
-                                    {{/user}}
-                                    {{^user}}
                                     <p class="card-text">{{diffuseurDesc}}</p>
-                                    {{/user}}
                                 </div>
                             </div>
 
-                            {{#user}}
                             <div class="card p-3 text-center">
                                 <div class="card-body">
                                     <h5 class="card-title">Goût</h5>
                                     <select form="formRental" name="idGout" class="form-control"
                                         id="exampleFormControlSelect1">
-                                        {{#gout}}
+                                        {{#goutList}}
                                         <option value="{{id}}">{{description}}</option>
-                                        {{/gout}}
+                                        {{/goutList}}
                                     </select>
                                     <p class="card-text">
                                     </p>
                                 </div>
                             </div>
-                            {{/user}}
 
                             <div class="card p-3 text-center">
                                 <div class="card-body">
@@ -136,7 +114,7 @@
                         <a class="rounded-circle fa-2x mx-4" id="cancelBtn" type="button" data-dismiss="modal">
                             <i class="fas fa-times-circle"></i>
                         </a>
-                        <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button" href="#">
+                        <a class="rounded-circle fa-2x mx-4" id="checkBtn" type="button">
                             <i class="fas fa-check-circle"></i>
                         </a>
                     </div>

@@ -137,7 +137,6 @@ app.get('/infoNarg/:id', (req, res) => {
 	narg.tete = db.getTete();
 	narg.diffuseur = db.getDiffuseur();
 	narg.gout = db.getGout();
-	console.log(narg)
 	res.render('info-narg', narg);
 });
 
@@ -145,30 +144,18 @@ app.get('/addNarg', isAdmin, (req, res) => {
 	res.render('addNarg');
 });
 
-
-
-
-
-
-
 app.get('/shoppingcart/:id', isRightUser, (req, res) => {
 	let rentals = db.getRental(req.params.id);
 	for (let i = 0; i < rentals.length; ++i) {
 		rentals[i].idNarg = db.searchNarg(rentals[i].idNarg);
 		rentals[i].idManche = db.searchManche(rentals[i].idManche);
 		rentals[i].idTete = db.searchTete(rentals[i].idTete);
+		rentals[i].idTuyau = db.searchTuyau(rentals[i].idTuyau);
 		rentals[i].idDiffuseur = db.searchDiffuseur(rentals[i].idDiffuseur);
 		rentals[i].idGout = db.searchGout(rentals[i].idGout);
 	}
-	console.log(rentals)
 	res.render('shoppingCart', {rentals});
 });
-
-
-
-
-
-
 
 app.get('/intermediaryNargManagment', isAdmin, (req, res) => {
 	let nargs = db.getNarguileManagement();
@@ -245,13 +232,13 @@ app.post('/addNarg', isAdmin, (req, res) => {
 });
 
 
-app.post('/newRental', isUser, (req, res) => {
-	checkNewRental(req.body);
-	if (checkNewRental(req.body)) {
-		db.newRental(req.body);
-		// return res.redner('rental')
+app.post('/newRental/:id', isUser, (req, res) => {
+	let dataRental = req.body;
+	if (checkNewRental(dataRental)) {
+		db.newRental(dataRental, req.session.user, req.params.id);
+		return res.redirect('/shoppingcart/' + req.session.user);
 	}
-	res.redirect('/', req.body);
+	res.redirect('/infoNarg/' + req.params.user);
 });
 
 app.post('/userSettings/:id', isRightUser, (req, res) => {
@@ -342,26 +329,26 @@ let checkNewRental = function(rentalData) {
 	for (let keyRental  in rentalData) {
 		let valueRental = rentalData[keyRental];
 		if (valueRental.length == 0) {
-			rentalData.messageError = 'Données invalide';
+			rentalData.messageError = 'Données invalide, merci de les vérifier';
 			return false;
 		}
 		let regExDate = new RegExp('date');
+		let regExTime = new RegExp('timming');
 		if (regExDate.test(keyRental)) {
 			let startDataRental = Date.parse(valueRental);
 			if (typeof startDataRental == NaN || startDataRental < Date.now()) {
 				rentalData.messageError = 'Date de location invalide.';
 				return false;
 			}
-		}
-		let regExTime = new RegExp('timming');
-		if (regExTime.test(keyRental)) {
+			rentalData.date = startDataRental;
+		} else if (regExTime.test(keyRental)) {
 			let timmingLocation = valueRental.split(":");
 			if (timmingLocation[0] > 24) {
 				rentalData.messageError = 'Durée de location invalide.';
 				return false;
 			}
-		}
-		else {
+			rentalData.timming = timmingLocation[0] * 60 * 60;
+		} else {
 			if (parseInt(valueRental) == NaN) {
 				rentalData.messageError = 'Un problème a été rencontré dans l\'enregistrement de votre commande. Merci de réessayer ultérieurement.';
 				return false;

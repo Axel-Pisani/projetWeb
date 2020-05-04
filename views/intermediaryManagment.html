@@ -4,21 +4,19 @@
 	  	{{#nargs}}
 		  	<li class="list-group-item">
 			  	<a href="/dbNargSet/{{id}}">
-			  		{{marque}} {{reference}}<br>
-			        manche({{mancheDesc}})		
-			        tuyau({{tuyauDesc}})<br>
-			        tête({{teteDesc}})		
-			        diffuseur({{diffuseurDesc}})		
+			  		{{marque}} {{reference}}
 			  	</a>
 			</li>
 		{{/nargs}}
+
 		{{#users}}
-	  		<li class="list-group-item">
+			<li class="list-group-item">
 	  			<a href="/dbUserSet/{{id}}">
-			  		nom : {{name}}	
+				  		nom : {{name}}	
 			  	</a>
-	  		</li>
+			</li>
 		{{/users}}
+
 		{{#rental}}
 		  	<li class="list-group-item">
 		  		<a href="/dbUserSet/{{id}}">

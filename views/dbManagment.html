@@ -1,6 +1,7 @@
 {{>header}}
 	{{#narg}}
-  		<form action="/updateNarg/{{id}}">
+  		<form action="/updateNarg/{{id}}" method="post">
+  			<h5>Narguilé</h5>
 			<label>Quantité : 
 				<input class="form-control" type="number" name="quantity" value="{{quantity}}" required>
 			</label>
@@ -11,12 +12,12 @@
 				<input class="form-control" type="text" name="reference" value="{{reference}}" required>
 			</label>
 			<label>Photo : 
-				<input class="form-control" type="file" name="photo" value="{{photo}}" required>
+				<input class="form-control" type="file" name="photo" value="{{photo}}">
 			</label>
 			<input type="submit" name="save">
 	  	</form><br>
 		  
-	  	<form action="/updateManche/{{idManche}}">
+	  	<form action="/updateManche/{{idManche}}" method="post">
 			<h5>Manche</h5>
 			<label>Quantité : 
 				<input class="form-control" type="number" name="quantity" value="{{mancheQuant}}" required>
@@ -30,7 +31,7 @@
 			<input type="submit" name="save">
 	  	</form><br>
 		 
-		<form action="/updateTuyau/{{idTuyau}}">
+		<form action="/updateTuyau/{{idTuyau}}" method="post">
 			<h5>Tuyau</h5>
 			<label>Quantité : 
 				<input class="form-control" type="number" name="quantity" value="{{tuyauQuant}}" required>
@@ -44,7 +45,7 @@
 			<input type="submit" name="save">
 	  	</form><br>
 
-	  	<form action="/updateTete/{{idTete}}">
+	  	<form action="/updateTete/{{idTete}}" method="post">
 			<h5>Tete</h5>
 			<label>Quantité : 
 				<input class="form-control" type="number" name="quantity" value="{{teteQuant}}" required>
@@ -58,7 +59,7 @@
 			<input type="submit" name="save">
 	  	</form><br>
 	  	
-	  	<form action="updateDiffuseur/{{idDiffuseur}}">
+	  	<form action="updateDiffuseur/{{idDiffuseur}}" method="post">
 			<h5>Diffuseur</h5>
 			<label>Quantité : 
 				<input class="form-control" type="number" name="quantity" value="{{diffuseurQuant}}" required>
@@ -73,8 +74,8 @@
 	  	</form>
 	{{/narg}}
 
-	{{#user}}
-	  	<form action="/updateUser/{{id}}">
+	{{#userSet}}
+	  	<form action="/updateUser/{{id}}" method="post">
 			<label> Nom : 
 				<input type="text" name="nom" value="{{name}}" required>
 			</label>
@@ -95,10 +96,10 @@
 			</label>
 			<input type="submit" name="save">
   		</form>
-	{{/user}}
+	{{/userSet}}
 
 	{{#rental}}
-	  	<form action="/updateLoc/{{id}}">
+	  	<form action="/updateLoc/{{id}}" method="post">
 			<label>Marque : 
 				<input class="form-control" type="text" name="marque" value="{{marque}}" required>
 			</label>

@@ -2,8 +2,12 @@
 <div class="container p-3">
 	
 	<div class="card-columns">
-
-		<form id="formRental" action="/newRental" method="post">
+		{{#messageError}}
+			<div class="alert alert-danger" role="alert">
+				{{messageError}}
+			</div>
+		{{/messageError}}
+		<form id="formRental" action="/newRental/{{id}}" method="post">
 			
 			<div class="card p-3 text-center">
 				<img src="{{manchePhoto}}" class="card-img-top" alt="Le manche fini de se nettoyer il arrive ! ;-)">
@@ -39,6 +43,18 @@
 				</div>
 			</div>
 
+			{{#user}}
+				<div class="card p-3 text-center">
+					<div class="card-body">
+						<h5 class="card-title">Date de début de location</h5>
+							<input type="date" name="date" value="{{date}}">
+						
+						<h5 class="card-title" id="cardTitle">Temps de location</h5>
+							Nombre d'heure : <input type="time" name="timming" value="{{timming}}" >
+					</div>
+				</div>
+			{{/user}}
+
 			<div class="card p-3 text-center">
 				<img src="{{tetePhoto}}" class="card-img-top" alt="La tête fini de faire chauffer les charbons ! ^^">
 				<div class="card-body text-center">
@@ -57,7 +73,7 @@
 			</div>
 
 			<div class="card bg-primary text-white text-center p-3">
-				<img src="{{photo}}" class="card-img-top" alt="L'image s'est perdu ^^">
+				<img src="{{nargPicture}}" class="card-img-top" alt="L'image s'est perdu ^^">
 				<div class="card-body">
 					<h4>{{marque}}</h4>
 					<h5>{{reference}}</h5>
@@ -102,18 +118,9 @@
 
 		</form>
 
-		<div class="card p-3 text-center">
-            <div class="card-body">
-				<h5 class="card-title">Date de début de location</h5>
-					<input type="date">
-				
-				<h5 class="card-title" id="cardTitle">Temps de location</h5>
-					<input type="time" name="timing">
-            </div>
-        </div>
-
 	</div>
 
 </div>
 {{> footer}}
+
 
