@@ -146,6 +146,26 @@ app.get('/addNarg', isAdmin, (req, res) => {
 });
 
 
+
+
+
+
+
+app.get('/shoppingcart/:id', isRightUser, (req, res) => {
+	let rentals = db.getRental(req.params.id);
+	// rentals.idNarg = db.searchNarg(rentals.idNarg);
+	// rentals.idManche
+	// rentals.idManche
+	// rentals.idManche
+	res.render('shoppingCart', {rentals});
+});
+
+
+
+
+
+
+
 app.get('/intermediaryNargManagment', isAdmin, (req, res) => {
 	let nargs = db.getNarguileManagement();
 	res.render('intermediaryManagment', {nargs});
