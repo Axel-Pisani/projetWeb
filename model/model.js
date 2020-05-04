@@ -27,6 +27,18 @@ exports.updateUser = function (data) {
 	return query;
 };//update
 
+exports.deleteUser = function (id) {
+	let query = db.prepare('DELETE FROM location WHERE idUser = ?;').run(id);
+	query = db.prepare('DELETE FROM users WHERE id = ?;').run(id);
+	return query;
+}//delete
+
+exports.searchUser = function (name, password) {
+	let query = db.prepare('SELECT * FROM users WHERE name = ? AND password = ?').get(name, password);
+	return query;
+}//search
+
+
 /***************************
 	CRUDS MANAGEMENT USER
 ****************************/
@@ -35,14 +47,10 @@ exports.getUsers = function () {
 	return query;
 }
 
-exports.deleteUser = function (id) {
-	let query = db.prepare('DELETE FROM users WHERE id = ?;').get(id);
-}//delete
+let deleteRentale = function (id) {
 
-exports.searchUser = function (name, password) {
-	let query = db.prepare('SELECT * FROM users WHERE name = ? AND password = ?').get(name, password);
-	return query;
-}//search
+}
+
 
 
 
@@ -109,9 +117,9 @@ exports.getNarguileManagement = function () {
 		 't.photo AS "tuyauPhoto", ' +
 		 't.description AS "tuyauDesc", ' +
 		 
-		 'd.quantity AS "diffuseurQuant" ' +
-		 'd.photo AS "diffuseurPhoto" ' +
-		 'd.description AS "diffuseurDesc", ' +
+		 'd.quantity AS "diffuseurQuant", ' +
+		 'd.photo AS "diffuseurPhoto", ' +
+		 'd.description AS "diffuseurDesc" ' +
 		'FROM narguile n ' +
 		 'JOIN manche m ON n.idManche = m.id ' +
 		 'JOIN tuyau t ON n.idTuyau = t.id ' +
@@ -130,10 +138,40 @@ exports.getNarguile = function () {
 	return narguile;
 }//getNarguile
 
+
 exports.getUsers = function () {
 	let users = db.prepare('SELECT * FROM users;').all();
 	return users;
 }//getNarguile
+
+
+exports.updateNarg = function (nargData) {
+	let query = db.prepare('UPDATE FROM narguile SET quantity = ? AND reference = ? AND marque = ? WHERE id = ?;')
+				  .run(nargData.quantity, nargData.reference, nargData.marque, nargData.id);
+	return query;
+}
+
+exports.updateElement = function (tuyauData) {
+	let query = db.prepare('UPDATE FROM tuyau SET quantity = ? AND description = ? WHERE id = ?;')
+				  .run(tuyauData.quantity, tuyauData.description, tuyauData.id);
+	return query;
+}
+exports.updateManche = function (mancheData) {
+	let query = db.prepare('UPDATE FROM manche SET quantity = ? AND description = ? WHERE id = ?;')
+				  .run(mancheData.quantity, mancheData.description, mancheData.id);
+	return query;
+}
+exports.updateTete = function (teteData) {
+	let query = db.prepare('UPDATE FROM tete SET quantity = ? AND description = ? WHERE id = ?;')
+				  .run(teteData.quantity, teteData.description, teteData.id);
+	return query;
+}
+exports.updateDiffuseur = function (diffuseurData) {
+	let query = db.prepare('UPDATE FROM tuyau SET quantity = ? AND description = ? WHERE id = ?;')
+				  .run(diffuseurData.quantity, diffuseurData.description, diffuseurData.id);
+	return query;
+}
+
 
 exports.searchNargile = function (id) {
 	let narguile = db.prepare('SELECT *, '+

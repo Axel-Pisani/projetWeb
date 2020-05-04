@@ -133,7 +133,6 @@ app.get('/listNarg', (req, res) => {
 
 app.get('/infoNarg/:id', (req, res) => {
 	let narg = db.searchNargile(req.params.id);
-	console.log(narg)
 	narg.manche = db.getManche();
 	narg.tuyau = db.getTuyau();
 	narg.tete = db.getTete();
@@ -163,11 +162,67 @@ app.get('/dbNargset/:id', isAdmin, (req, res) => {
 	res.render('dbManagment', {narg});
 });
 
+app.post('/updateNarg/:id', isAdmin, (req, res) => {
+	let nargData = req.body;
+	if (!checkQuantity(nargData.quantity) ||
+		!checkMarqRef(nargData.marque) ||
+		!checkMarqRef(nargData.reference)) {
+		return res.render('dbManagment', nargData);
+	}
+	db.updateNarg(nargData);
+	res.render('dbManagment', nargData);
+});
+
+app.post('/updateManche/:id', isAdmin, (req, res) => {
+	let data = req.body;
+	if (!checkQuantity(data.quantity) ||
+		!checkDesc(data.description)) {
+		return res.render('dbManagment', data);
+	}
+	db.updateManche(data);
+	res.render('dbManagment', data);
+});
+
+app.post('/updateTuyau/:id', isAdmin, (req, res) => {
+	let data = req.body;
+	if (!checkQuantity(data.quantity) ||
+		!checkDesc(data.description)) {
+		return res.render('dbManagment', data);
+	}
+	db.updateTuyau(data);
+	res.render('dbManagment', data);
+});
+
+app.post('/updateTete/:id', isAdmin, (req, res) => {
+	let data = req.body;
+	if (!checkQuantity(data.quantity) ||
+		!checkDesc(data.description)) {
+		return res.render('dbManagment', data);
+	}
+	db.updateTete(data);
+	res.render('dbManagment', data);
+});
+
+app.post('/updateDiffuseur/:id', isAdmin, (req, res) => {
+	let data = req.body;
+	if (!checkQuantity(data.quantity) ||
+		!checkDesc(data.description)) {
+		return res.render('dbManagment', data);
+	}
+	db.updateDiffuseur(data);
+	res.render('dbManagment', data);
+});
+
 
 app.get('/rentalManagment', isAdmin, (req, res) => {
 	res.render('dbManagment');
 });
 
+app.get('/deleteUser/:id', isRightUser, (req, res) => {
+	let deleteUser = db.deleteUser(req.params.id);
+ 	req.session = null;
+	res.redirect('/');
+});
 
 /*****************
 		POST
@@ -218,10 +273,13 @@ app.post('/addNarg', isAdmin, (req, res) => {
 
 
 app.post('/newRental', isUser, (req, res) => {
-	console.log(req.body);
-	res.redirect('/');
+	checkNewRental(req.body);
+	if (checkNewRental(req.body)) {
+		db.newRental(req.body);
+		// return res.redner('rental')
+	}
+	res.redirect('/', req.body);
 });
-
 
 app.post('/userSettings/:id', isRightUser, (req, res) => {
 	req.body.id = req.params.id;
@@ -232,6 +290,8 @@ app.post('/userSettings/:id', isRightUser, (req, res) => {
 	}
 	res.render('userSettings', dataIsCheck);
 });
+
+
 
 
 app.use((req, res, next) => {
@@ -245,8 +305,50 @@ app.use((req, res, next) => {
 **********************/
 
 /*
+	Method check rental
+*/
+
+/*
 	Method check narg
 */
+
+let checkNewRental = function(rentalData) {
+	if (rentalData == undefined) {
+		rentalData.messageError = 'Données invalide.';
+		return false;
+	}
+	for (let keyRental  in rentalData) {
+		let valueRental = rentalData[keyRental];
+		if (valueRental.length == 0) {
+			rentalData.messageError = 'Données invalide';
+			return false;
+		}
+		let regExDate = new RegExp('date');
+		if (regExDate.test(keyRental)) {
+			let startDataRental = Date.parse(valueRental);
+			if (typeof startDataRental == NaN || startDataRental < Date.now()) {
+				rentalData.messageError = 'Date de location invalide.';
+				return false;
+			}
+		}
+		let regExTime = new RegExp('timming');
+		if (regExTime.test(keyRental)) {
+			let timmingLocation = valueRental.split(":");
+			if (timmingLocation[0] > 24) {
+				rentalData.messageError = 'Durée de location invalide.';
+				return false;
+			}
+		}
+		else {
+			if (parseInt(valueRental) == NaN) {
+				rentalData.messageError = 'Un problème a été rencontré dans l\'enregistrement de votre commande. Merci de réessayer ultérieurement.';
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 let checkNewNarg = function (nargData) {
 	if (nargData == undefined) {
 		return nargData = {messageError: "aucune donnée spécifié"};
@@ -254,27 +356,24 @@ let checkNewNarg = function (nargData) {
 	for (let nargKey in nargData) {
 		let nargValue = nargData[nargKey];
 
-		let regExPict = new RegExp('Pict');
-		if (regExPict.test(nargKey)) {
+		let regEx = new RegExp('Pict|Quant|Desc|marq|ref');
+		if (regEx.test(nargKey)) {
 			continue;
 		}
 
-		let regExQuantity = new RegExp('Quant');
-		if (regExQuantity.test(nargKey)) {
+		if (regEx.test(nargKey)) {
 			if (!checkQuantity(nargValue)) 
 				return nargData.messageError = 'la valeur : "' + nargValue + '" n\'est pas correcte';
 			continue;
 		}
 
-		let regExDesc = new RegExp('Desc');
-		if (regExDesc.test(nargKey)) {
+		if (regEx.test(nargKey)) {
 			if (!checkDesc(nargValue))
 				return nargData.messageError = 'la valeur : "' + nargValue + '" est incorrecte';
 			continue;
 		}
 
-		let regExMarqRef = new RegExp('marq|ref');
-		if (regExMarqRef.test(nargKey)) {
+		if (regEx.test(nargKey)) {
 			if (!checkMarqRef(nargValue))
 				return nargData.messageError = 'la valeur : "' + nargValue + '" est mauvaise ou trop longue';
 			continue;
@@ -306,19 +405,6 @@ let checkMarqRef = function (dataString) {
 /*
 	METHOD CHECK USER
 */
-let usernameIsAvailable = function (data) {
-	data.name = data.name.trim();
-	if (data.name === undefined) {
-		data.messageError = "le username est manquant";
-		return data;
-	}
-	let user = db.getUsernameOfUser(data.name);
-	if (user.length != 0) {
-		data.messageError = "username invalide";
-	}
-	return data;
-}//usernameIsAvailable
-
 let usernameIsUseed = function (data, userSessId) {
 	data.name = data.name.trim();
 	if (data.name === undefined) {
@@ -363,7 +449,7 @@ let telIsValide = function (data) {
 }//telIsValide
 
 let verificationUserData = function (data, userSessId) {
-	let messError = usernameIsAvailable(data);
+	let messError = usernameIsUseed(data, userSessId);
 	if (messError !== undefined)
 		return data;
 
@@ -381,6 +467,9 @@ let verificationUserData = function (data, userSessId) {
 
 	return data;
 }//verificationUserData
+
+
+
 
 let createHash = function (password) {
 	let hash = crypto.createHash('sha256');
