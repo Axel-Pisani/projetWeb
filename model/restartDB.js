@@ -91,18 +91,43 @@ function restart () {
 	query = db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?)')
 				  .run(null, 'mohammed', createHash(password), '1998-04-02', 'chez lui', '0762042543', 'admin');
 
+				  						//--MANCHE--//
 	query = db.prepare('INSERT INTO manche VALUES (?,?,?,?)')
-				  .run(null, 2, 'Aluminium fin avec joint d\'étanchéité', null);
+				  .run(null, 2, 'Manche Marrakech aluminium fin', '/assets/manche-marrakech-alu.jpg');
 
+	query = db.prepare('INSERT INTO manche VALUES (?,?,?,?)')
+				  .run(null, 2, 'Manche Vibe aluminium', '/assets/manche-aluminium-vibe.jpg');
+
+	query = db.prepare('INSERT INTO manche VALUES (?,?,?,?)')
+				  .run(null, 2, 'Manche Bamboo L verre', '/assets/manche-verre.jpg');
+
+										//--TUYAU--//
 	query = db.prepare('INSERT INTO tuyau VALUES (?,?,?,?)')
-				  .run(null, 2, 'Tuyau en silicone flexible', null);
+				  .run(null, 2, 'Tuyau en silicone flexible', '/assets/tuyau-silicone.jpg');
+				  
+	query = db.prepare('INSERT INTO tuyau VALUES (?,?,?,?)')
+				  .run(null, 3, 'Tuyau en tissu', '/assets/tuyau-tissu.jpg');
+				  
+	query = db.prepare('INSERT INTO tuyau VALUES (?,?,?,?)')
+				  .run(null, 3, 'Tuyau en plastique pliable', '/assets/tuyau-pliable.png');
+
+										//--TETE--//
+	query = db.prepare('INSERT INTO tete VALUES (?,?,?,?)')
+				  .run(null, 1, 'Tête en céramique large', '/assets/ceramique-vortex.jpg');
+	
+	query = db.prepare('INSERT INTO tete VALUES (?,?,?,?)')
+				  .run(null, 1, 'Tête en silicone flexible', '/assets/silicone-flexible.jpg');
 
 	query = db.prepare('INSERT INTO tete VALUES (?,?,?,?)')
-				  .run(null, 1, 'Tête en céramique large', null);
+				  .run(null, 1, 'Tête en argile Brohood avec grille', '/assets/brohood.jpg');
+				  
+	query = db.prepare('INSERT INTO tete VALUES (?,?,?,?)')
+				  .run(null, 1, 'Tête en terre cuite', '/assets/terre-cuite-plat.jpg');
 
 	query = db.prepare('INSERT INTO tete VALUES (?,?,?,?)')
-				  .run(null, 1, 'Tête en silicone avec adaptateur', null);
+				  .run(null, 1, 'Tête en silicone avec adaptateur', '/assets/silicone.jpg');
 
+				  						//--TABAC--//
 	query = db.prepare('INSERT INTO gout VALUES (?,?,?,?)')
 				  .run(null, 1, 'Aldalya Cola Dragon', '/assets/tasteDragon.png');
 
@@ -112,14 +137,55 @@ function restart () {
 	query = db.prepare('INSERT INTO gout VALUES (?,?,?,?)')
 				  .run(null, 1, 'Aldalya Cactus', '/assets/tasteCactus.png');
 
-	query = db.prepare('INSERT INTO diffuseur VALUES (?,?,?,?)')
-				  .run(null, 1, 'Diffuseur en aluminium', null);
+	query = db.prepare('INSERT INTO gout VALUES (?,?,?,?)')
+				  .run(null, 1, 'Aldalya Love66', '/assets/tasteLove66.png');
 
+	query = db.prepare('INSERT INTO gout VALUES (?,?,?,?)')
+				  .run(null, 1, 'Aldalya LadyKiller', '/assets/tasteLadyKiller.png');
+
+	query = db.prepare('INSERT INTO gout VALUES (?,?,?,?)')
+				  .run(null, 1, 'Aldalya Pêche-Menthe', '/assets/tastePeachMinth.png');
+
+	query = db.prepare('INSERT INTO gout VALUES (?,?,?,?)')
+				  .run(null, 1, 'Aldalya Menthe-Citron', '/assets/tasteLemonMinth.png');
+
+										//--DIFFUSEUR--//
+	query = db.prepare('INSERT INTO diffuseur VALUES (?,?,?,?)')
+				  .run(null, 1, 'Diffuseur en aluminium', '/assets/diff-aluminium.jpg');
+
+	query = db.prepare('INSERT INTO diffuseur VALUES (?,?,?,?)')
+				  .run(null, 1, 'Diffuseur en inox', '/assets/diff-inox.jpg');
+
+	query = db.prepare('INSERT INTO diffuseur VALUES (?,?,?,?)')
+				  .run(null, 1, 'Diffuseur en silicone', '/assets/diff-siliconne.jpg');
+
+										//--CHICHA--//
 	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
 				  .run(null, 1, 'El-Badia', 'Celeste X3', 1, 1, 1, 1, '/assets/celesteJunior2-0Violette.jpg');
 
 	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
-				  .run(null, 1, 'ODUMAN', 'N5-Z JUNIOR', 1, 1, 2, 1, null);
+				  .run(null, 1, 'ODUMAN', 'N5-Z JUNIOR', 1, 1, 2, 1, '/assets/oduman-n5z-junior.png');
+				  
+	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+				  .run(null, 1, 'BRODATOR', 'MINI 320', 1, 1, 2, 1, '/assets/mini-brodator-320.png');
+
+	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+				  .run(null, 1, 'MYA', 'Mya Melina', 1, 1, 2, 1, '/assets/mya-melina.png');
+				  
+	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+				  .run(null, 1, 'MASHISHA', 'MS Venom Camo', 1, 1, 2, 1, '/assets/ms-venom-camo.png');
+				  
+	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+				  .run(null, 1, 'OCTOPUZ', 'Octopuz Nautiluz', 1, 1, 2, 1, '/assets/octopuz-nautiluz.png');
+				  
+	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+				  .run(null, 1, 'El-Badia', 'Minotor', 1, 1, 2, 1, '/assets/minotor.png');
+				  
+	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+				  .run(null, 1, 'ODUMAN', 'Gusto', 1, 1, 2, 1, '/assets/gusto.png');
+				  
+	query = db.prepare('INSERT INTO narguile VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+				  .run(null, 1, 'Scorpio', 'Stinger Carbon', 1, 1, 2, 1, '/assets/stinger-carbon.png');
 	
 	let date = Math.round(new Date().getTime()/1000);
 	// id ,idUser, idNarg, idManche, idTuyau, idTete, idGout, 
