@@ -101,15 +101,6 @@ app.get('/signup', (req, res) => {
 	res.render('registerForm');
 });
 
-
-
-app.get('/test', (req, res) => {
-	res.render('test', {id: "renta1"});
-});
-
-
-
-
 app.get('/signout', (req, res) => {
 	req.session = null;
 	res.redirect('/');
@@ -202,10 +193,9 @@ app.post('/login', (req, res) => {
 	}
 	let messageError = {messageError: "identifiant ou mot de passe manquant"};
 	res.status(404).render('login', messageError);
-});//login
+});
 
 
-//en cours d'implémentations
 app.post('/signup', (req, res) => {	
 	let dataIsCheck = verificationUserData(req.body);
 	if (dataIsCheck.messageError !== undefined) {
@@ -219,7 +209,7 @@ app.post('/signup', (req, res) => {
 	res.redirect('/');
 });
 
-//Ok
+
 app.post('/addNarg', isAdmin, (req, res) => {
 	let data = req.body;
 	checkNewNarg(data);
@@ -229,16 +219,6 @@ app.post('/addNarg', isAdmin, (req, res) => {
 		return res.redirect('/infoNarg/' + newNarg.lastInsertRowid);
 	}
 	res.render('addNarg', data);
-});
-
-
-app.post('/newRental/:id', isUser, (req, res) => {
-	let dataRental = req.body;
-	if (checkNewRental(dataRental)) {
-		db.newRental(dataRental, req.session.user, req.params.id);
-		return res.redirect('/shoppingcart/' + req.session.user);
-	}
-	res.redirect('/infoNarg/' + req.params.user);
 });
 
 app.post('/userSettings/:id', isRightUser, (req, res) => {
@@ -302,6 +282,14 @@ app.post('/updateDiffuseur/:id', isAdmin, (req, res) => {
 	res.render('dbManagment', data);
 });
 
+app.post('/newRental/:id', isUser, (req, res) => {
+	let dataRental = req.body;
+	if (checkNewRental(dataRental)) {
+		db.newRental(dataRental, req.session.user, req.params.id);
+		return res.redirect('/shoppingcart/' + req.session.user);
+	}
+	res.redirect('/infoNarg/' + req.params.id);
+});
 
 app.use((req, res, next) => {
 	res.status(404).redirect('error');
@@ -316,11 +304,6 @@ app.use((req, res, next) => {
 /*
 	Method check rental
 */
-
-/*
-	Method check narg
-*/
-
 let checkNewRental = function(rentalData) {
 	if (rentalData == undefined) {
 		rentalData.messageError = 'Données invalide.';
@@ -328,7 +311,8 @@ let checkNewRental = function(rentalData) {
 	}
 	for (let keyRental  in rentalData) {
 		let valueRental = rentalData[keyRental];
-		if (valueRental.length == 0) {
+		console.log(valueRental)
+		if (0 == 0) {
 			rentalData.messageError = 'Données invalide, merci de les vérifier';
 			return false;
 		}
@@ -341,7 +325,8 @@ let checkNewRental = function(rentalData) {
 				return false;
 			}
 			rentalData.date = startDataRental;
-		} else if (regExTime.test(keyRental)) {
+		} 
+		else if (regExTime.test(keyRental)) {
 			let timmingLocation = valueRental.split(":");
 			if (timmingLocation[0] > 24) {
 				rentalData.messageError = 'Durée de location invalide.';
@@ -358,6 +343,10 @@ let checkNewRental = function(rentalData) {
 	return true;
 }
 
+
+/*
+	Method check narg
+*/
 let checkNewNarg = function (nargData) {
 	if (nargData == undefined) {
 		return nargData = {messageError: "aucune donnée spécifié"};
