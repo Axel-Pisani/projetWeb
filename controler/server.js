@@ -104,8 +104,7 @@ app.get('/signup', (req, res) => {
 
 
 app.get('/test', (req, res) => {
-
-	res.render('test');
+	res.render('test', {id: "renta1"});
 });
 
 
@@ -132,12 +131,13 @@ app.get('/listNarg', (req, res) => {
 });
 
 app.get('/infoNarg/:id', (req, res) => {
-	let narg = db.searchNargile(req.params.id);
+	let narg = db.searchNargWithAllElement(req.params.id);
 	narg.manche = db.getManche();
 	narg.tuyau = db.getTuyau();
 	narg.tete = db.getTete();
 	narg.diffuseur = db.getDiffuseur();
 	narg.gout = db.getGout();
+	console.log(narg)
 	res.render('info-narg', narg);
 });
 
@@ -153,10 +153,14 @@ app.get('/addNarg', isAdmin, (req, res) => {
 
 app.get('/shoppingcart/:id', isRightUser, (req, res) => {
 	let rentals = db.getRental(req.params.id);
-	// rentals.idNarg = db.searchNarg(rentals.idNarg);
-	// rentals.idManche
-	// rentals.idManche
-	// rentals.idManche
+	for (let i = 0; i < rentals.length; ++i) {
+		rentals[i].idNarg = db.searchNarg(rentals[i].idNarg);
+		rentals[i].idManche = db.searchManche(rentals[i].idManche);
+		rentals[i].idTete = db.searchTete(rentals[i].idTete);
+		rentals[i].idDiffuseur = db.searchDiffuseur(rentals[i].idDiffuseur);
+		rentals[i].idGout = db.searchGout(rentals[i].idGout);
+	}
+	console.log(rentals)
 	res.render('shoppingCart', {rentals});
 });
 
@@ -178,59 +182,8 @@ app.get('/intermediaryUserManagment', isAdmin, (req, res) => {
 
 
 app.get('/dbNargset/:id', isAdmin, (req, res) => {
-	let narg = db.searchNargile(req.params.id); 
+	let narg = db.searchNargWithAllElement(req.params.id); 
 	res.render('dbManagment', {narg});
-});
-
-app.post('/updateNarg/:id', isAdmin, (req, res) => {
-	let nargData = req.body;
-	if (!checkQuantity(nargData.quantity) ||
-		!checkMarqRef(nargData.marque) ||
-		!checkMarqRef(nargData.reference)) {
-		return res.render('dbManagment', nargData);
-	}
-	db.updateNarg(nargData);
-	res.render('dbManagment', nargData);
-});
-
-app.post('/updateManche/:id', isAdmin, (req, res) => {
-	let data = req.body;
-	if (!checkQuantity(data.quantity) ||
-		!checkDesc(data.description)) {
-		return res.render('dbManagment', data);
-	}
-	db.updateManche(data);
-	res.render('dbManagment', data);
-});
-
-app.post('/updateTuyau/:id', isAdmin, (req, res) => {
-	let data = req.body;
-	if (!checkQuantity(data.quantity) ||
-		!checkDesc(data.description)) {
-		return res.render('dbManagment', data);
-	}
-	db.updateTuyau(data);
-	res.render('dbManagment', data);
-});
-
-app.post('/updateTete/:id', isAdmin, (req, res) => {
-	let data = req.body;
-	if (!checkQuantity(data.quantity) ||
-		!checkDesc(data.description)) {
-		return res.render('dbManagment', data);
-	}
-	db.updateTete(data);
-	res.render('dbManagment', data);
-});
-
-app.post('/updateDiffuseur/:id', isAdmin, (req, res) => {
-	let data = req.body;
-	if (!checkQuantity(data.quantity) ||
-		!checkDesc(data.description)) {
-		return res.render('dbManagment', data);
-	}
-	db.updateDiffuseur(data);
-	res.render('dbManagment', data);
 });
 
 
@@ -311,7 +264,56 @@ app.post('/userSettings/:id', isRightUser, (req, res) => {
 	res.render('userSettings', dataIsCheck);
 });
 
+app.post('/updateNarg/:id', isAdmin, (req, res) => {
+	let nargData = req.body;
+	if (!checkQuantity(nargData.quantity) ||
+		!checkMarqRef(nargData.marque) ||
+		!checkMarqRef(nargData.reference)) {
+		return res.render('dbManagment', nargData);
+	}
+	db.updateNarg(nargData);
+	res.render('dbManagment', nargData);
+});
 
+app.post('/updateManche/:id', isAdmin, (req, res) => {
+	let data = req.body;
+	if (!checkQuantity(data.quantity) ||
+		!checkDesc(data.description)) {
+		return res.render('dbManagment', data);
+	}
+	db.updateManche(data);
+	res.render('dbManagment', data);
+});
+
+app.post('/updateTuyau/:id', isAdmin, (req, res) => {
+	let data = req.body;
+	if (!checkQuantity(data.quantity) ||
+		!checkDesc(data.description)) {
+		return res.render('dbManagment', data);
+	}
+	db.updateTuyau(data);
+	res.render('dbManagment', data);
+});
+
+app.post('/updateTete/:id', isAdmin, (req, res) => {
+	let data = req.body;
+	if (!checkQuantity(data.quantity) ||
+		!checkDesc(data.description)) {
+		return res.render('dbManagment', data);
+	}
+	db.updateTete(data);
+	res.render('dbManagment', data);
+});
+
+app.post('/updateDiffuseur/:id', isAdmin, (req, res) => {
+	let data = req.body;
+	if (!checkQuantity(data.quantity) ||
+		!checkDesc(data.description)) {
+		return res.render('dbManagment', data);
+	}
+	db.updateDiffuseur(data);
+	res.render('dbManagment', data);
+});
 
 
 app.use((req, res, next) => {
