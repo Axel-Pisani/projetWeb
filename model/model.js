@@ -7,7 +7,7 @@ let db = sql('../model/db.narguile');
 
 
 /***************************
-    CRUDS USER ADMIN    
+    CRUDS USER USERS    
 ****************************/
 exports.createUser = function (data) {
 	let query = db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?);')
@@ -47,12 +47,10 @@ exports.getUsers = function () {
 	return query;
 }
 
-let deleteRentale = function (id) {
-
+exports.getRental = function (userID) {
+	let query = db.prepare('SELECT * FROM location WHERE idUser = ? ;').all(userID);
+	return query;
 }
-
-
-
 
 /*    CRUDS MANAGEMENT NAGUILE    */
 
