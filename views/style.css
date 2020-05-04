@@ -372,3 +372,7 @@ ul.cardElement li{
     margin-top: 10px;
     color: grey;
 }
+
+#listCard{
+    width: 18rem;
+}
